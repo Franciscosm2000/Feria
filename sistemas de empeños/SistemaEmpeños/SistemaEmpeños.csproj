@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26A5BAFF-16A6-4535-AB19-59C164E96094}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SistemaEmpeños</RootNamespace>
+    <AssemblyName>SistemaEmpeños</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CONTROLADOR\UserModelo.cs" />
+    <Compile Include="MODELO\AccesoDatoUsuario.cs" />
+    <Compile Include="CONTROLADOR\Cargos.cs" />
+    <Compile Include="MODELO\ConnectionToSQL.cs" />
+    <Compile Include="CONTROLADOR\DatosInicioSecion.cs" />
+    <Compile Include="Views\FrmAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmAccount.Designer.cs">
+      <DependentUpon>FrmAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmClients.Designer.cs">
+      <DependentUpon>FrmClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmEmployees.Designer.cs">
+      <DependentUpon>FrmEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmPawns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmPawns.Designer.cs">
+      <DependentUpon>FrmPawns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmReports.Designer.cs">
+      <DependentUpon>FrmReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmStore.Designer.cs">
+      <DependentUpon>FrmStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\FrmAccount.resx">
+      <DependentUpon>FrmAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmClients.resx">
+      <DependentUpon>FrmClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmEmployees.resx">
+      <DependentUpon>FrmEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmPawns.resx">
+      <DependentUpon>FrmPawns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmReports.resx">
+      <DependentUpon>FrmReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmStore.resx">
+      <DependentUpon>FrmStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_pawns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_pawns_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_employees.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_employees_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_reports_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_clients.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_clients_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_rest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_max.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_drop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_show_sales.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_login_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_save_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_fix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_sale_point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_sale_point_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_product_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_store.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_store_alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_invoice_alt.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
