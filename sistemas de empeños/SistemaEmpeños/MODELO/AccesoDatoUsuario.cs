@@ -54,10 +54,48 @@ namespace SistemaEmpeños.MODELO
             }
           }  
         }
-
+        //Hacer metodo
         public void Privilegio_porCargo()
         {
 
         }
+        //Metodo para cambiar clave en la bd cuando esta se olvida
+        public string CambiarPass(string user)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "select *from usuario where Nombre1 = @user";
+                    command.Parameters.AddWithValue("user",user);
+                    command.CommandType = CommandType.Text;
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read() == true)
+                    {
+                        string userName = reader.GetString(0) + " "+ reader.GetString(2);
+                        string password = reader.GetString(6);
+                        string email = reader.GetString(5);
+                        
+                        var correo_ = new SoporteEmail();
+                        correo_.EnviarEmail(sujeto: "Recuperación de contraseña",
+                            cuerpo:"Hola, "+userName +" "+ "Su contraseña es :"+ password+ " ,Se recomienda cambiarla una vez que" +
+                            " allá accedido al sistema", destinatario: new List<string> {email} );
+
+                        return "Porfavor revice su correo.";
+                    }
+
+                    else
+                    {
+                        return "Lo sentimos, no cuenta con un correo electronico.";
+                    }
+
+                }
+            }
+        }
+
     }
 }

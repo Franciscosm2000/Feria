@@ -220,5 +220,12 @@ namespace SistemaEmpeños
             this.Show();
             txtUsername.Focus();
         }
+
+        private void linkLostPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserModelo clave = new UserModelo();
+            MessageBox.Show(clave.restraurarPass(txtUsername.Text));
+            
+        }
     }
 }

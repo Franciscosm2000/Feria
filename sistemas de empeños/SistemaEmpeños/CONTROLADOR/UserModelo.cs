@@ -15,5 +15,12 @@ namespace SistemaEmpeños.CONTROLADOR
             return acceso.Login(user,pass);  
            
         }
+
+        public string restraurarPass(string nombre)
+        {
+            AccesoDatoUsuario acceso = new AccesoDatoUsuario();
+
+            return acceso.CambiarPass(nombre);
+        }
     }
 }
