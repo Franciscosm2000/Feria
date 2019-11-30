@@ -47,11 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CONTROLADOR\SoporteEmail.cs" />
     <Compile Include="CONTROLADOR\UserModelo.cs" />
     <Compile Include="MODELO\AccesoDatoUsuario.cs" />
     <Compile Include="CONTROLADOR\Cargos.cs" />
     <Compile Include="MODELO\ConnectionToSQL.cs" />
     <Compile Include="CONTROLADOR\DatosInicioSecion.cs" />
+    <Compile Include="MODELO\Servicio Correo Electronico\Servidor_correo_maestro.cs" />
     <Compile Include="Views\FrmAccount.cs">
       <SubType>Form</SubType>
     </Compile>

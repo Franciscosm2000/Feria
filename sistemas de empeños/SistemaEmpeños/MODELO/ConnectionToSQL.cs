@@ -15,7 +15,10 @@ namespace SistemaEmpeños.MODELO
         //Constructor
         public ConnectionToSQL()
         {
-            connectionString = "server = FRANCISCO; Database = Prueba ; integrated security = true";
+            //Cadena de Coneccion Fran
+            connectionString = "server = FRANCISCO; Database = PawnSystem ; User Id =CasaDeEmpeño; Password = 1320022077";
+            //Cadena de coneccion Saul
+            //Cadena de coneccion Dylan
         }
 
         //Solo accedido de una clase eradada
