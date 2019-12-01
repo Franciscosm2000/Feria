@@ -4,23 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SistemaEmpeños.MODELO;
+using System.Windows.Forms;
 namespace SistemaEmpeños.CONTROLADOR
 {
    public class UserModelo
     {
-        AccesoDatoUsuario acceso = new AccesoDatoUsuario();
+       
       
         public bool LoginUsser(string user, string pass)
         {
-            return acceso.Login(user,pass);  
+            try
+            {
+                AccesoDatoUsuario acceso = new AccesoDatoUsuario();
+
+                return acceso.Login(user, pass);
+            }
+            catch (Exception e)
+            {
+                return false;
+               
+            }
+             
            
         }
 
         public string restraurarPass(string nombre)
         {
-            AccesoDatoUsuario acceso = new AccesoDatoUsuario();
+            try
+            {
+                AccesoDatoUsuario acceso = new AccesoDatoUsuario();
 
-            return acceso.CambiarPass(nombre);
+                return acceso.CambiarPass(nombre);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            
         }
+ 
     }
 }
