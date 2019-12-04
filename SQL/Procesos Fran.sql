@@ -1,5 +1,5 @@
 --Proceso para buscar un cliente o un empleado
-alter proc sp_buscarCliente_Empleado
+create proc sp_buscarCliente_Empleado
 @Tipo varchar(20),
 @Dato varchar(100)
 as
@@ -66,44 +66,33 @@ as
 	end
 
 ----Crear usuarios dentro de la base de datos /REVISAR PENDIENTE/
-alter proc CrearUsuario
-@id_empleado int,
-@pass varchar(20),
-@id_cargo int
+-----Usuario
+create proc sp_addUsuario
+@Nombre varchar(50),
+@pass nvarchar(30),
+@id_cargo int 
 as
-declare @usuario nvarchar(20)
-set @usuario = (
-select SUBSTRING(e.Primer_Nombre,0,2) +
- SUBSTRING(e.Segundo_Nombre,0,2)+
- SUBSTRING(e.Primer_Apellido,0,2)+
- SUBSTRING(e.Segundo_Apellido,0,2)+
- SUBSTRING(e.Cédula,4,6) 
- from Empleado e where Id_Empleado = 3
- )
- 
+	insert into Usuario values 
+	(@Nombre,@pass,@id_cargo);
+go
 
- exec CrearUsuario 3,'123456',2
+create proc sp_BuscarUsuario
+@Usuario varchar(50),
+@pass nvarchar(30)
+as
+	select *from Usuario u where u.Usuario = @Usuario
+	and u.clave = @pass 
+go
+----Cargo
+create proc sp_addCargo
+@Cargo varchar(50)
+as
+	insert into Cargo values 
+	(@Cargo);
+go
 
 
  ----Producto
- create proc Insertar_TipoProducto
- @Tipo varchar(50),
- @Descripcion varchar(100)
- as
- insert into Tipo_Producto values 
- (@Tipo,@Descripcion)
-
- create proc Insertar_Producto
- @Id_Tipo int,
- @valor money,
- @descripcion varchar(100),
- @Nombre varchar(50),
- @precio_Venta money,
- @Estado varchar(50)
- as
- insert into Producto values 
- (@Id_Tipo,@valor,@descripcion,@Nombre,@precio_Venta,@Estado
- )
 
  create proc BuscarProducto
  @Dato varchar(50)
