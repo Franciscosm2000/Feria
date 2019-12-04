@@ -112,7 +112,8 @@ create table Usuario(
 	Id_Usuario integer primary key identity(0,1),
 	Id_cargo integer not null,
 	usuario varchar(50),
-	clave varchar(50)
+	clave varchar(50),
+	correo varchar(50)
 );
 
 create table Cargo(
