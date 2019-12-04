@@ -111,7 +111,8 @@ create table Venta(
 create table Usuario(
 	Id_Usuario integer primary key identity(0,1),
 	Id_cargo integer not null,
-	Id_Empleado integer not null
+	usuario varchar(50),
+	clave varchar(50)
 );
 
 create table Cargo(
@@ -124,10 +125,6 @@ create table Cargo(
 alter table Usuario 
 add foreign key (Id_Cargo) 
 references Cargo(id_Cargo);
-
-alter table Usuario 
-add foreign key (Id_Empleado) 
-references Empleado(id_Empleado);
 
 alter table Detalle_Empeño 
 add foreign key (Id_Empleado) 
@@ -176,3 +173,4 @@ references Cliente_Comprador(id_Cliente_Comprador);
 alter table Detalle_Empeño
 add foreign key (Id_Empleado)
 references Empleado(Id_Empleado);
+
