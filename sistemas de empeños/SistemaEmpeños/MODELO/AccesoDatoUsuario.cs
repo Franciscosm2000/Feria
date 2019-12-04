@@ -24,10 +24,11 @@ namespace SistemaEmpeños.MODELO
                 {
                     command.Connection = connection;
                     //Ejecucion del proceso almacenado con los usuarios segun los parametros pasados
-                    command.CommandText = "select* from usuario where Nombre1 = @user and clave = @pass";
-                    command.Parameters.AddWithValue("@user",user);
-                    command.Parameters.AddWithValue("@pass",pass);
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "sp_BuscarUsuario ";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Usuario", user);
+                    command.Parameters.AddWithValue("@pass", pass);
+                    command.Parameters.AddWithValue("@Tipo","login");
                     SqlDataReader reader = command.ExecuteReader();
                     //si hay elementos el usuario existe
                     if (reader.HasRows)
@@ -37,11 +38,9 @@ namespace SistemaEmpeños.MODELO
                         while (reader.Read())
                         {
                             //DatosInicioSecion.IdUser = reader.GetInt32(0);
-                            DatosInicioSecion.nombre =( reader.GetString(0) + reader.GetString(1));
-                            DatosInicioSecion.apellido = (reader.GetString(2) + reader.GetString(3));
-                            DatosInicioSecion.cargo = reader.GetString(4);
-                            DatosInicioSecion.correo = reader.GetString(5);
-
+                            DatosInicioSecion.nombre = reader.GetString(0);
+                            DatosInicioSecion.cargo = reader.GetString(1);
+                            DatosInicioSecion.correo = reader.GetString(2);
                         }
 
                         return true;
@@ -69,16 +68,19 @@ namespace SistemaEmpeños.MODELO
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "select *from usuario where Nombre1 = @user";
-                    command.Parameters.AddWithValue("user",user);
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "sp_BuscarUsuario";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Usuario",user);
+                    command.Parameters.AddWithValue("@pass","");
+                    command.Parameters.AddWithValue("@Tipo","RecuperarUsuario");
+                    
                     SqlDataReader reader = command.ExecuteReader();
 
                     if (reader.Read() == true)
                     {
-                        string userName = reader.GetString(0) + " "+ reader.GetString(2);
-                        string password = reader.GetString(6);
-                        string email = reader.GetString(5);
+                        string userName = reader.GetString(0);
+                        string password = reader.GetString(1);
+                        string email = reader.GetString(2);
                         
                         var correo_ = new SoporteEmail();
                         correo_.EnviarEmail(sujeto: "Recuperación de contraseña",

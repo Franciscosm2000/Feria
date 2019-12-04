@@ -182,19 +182,37 @@ as
 create proc sp_addUsuario
 @Nombre varchar(50),
 @pass nvarchar(30),
-@id_cargo int 
+@id_cargo int ,
+@correo nvarchar(50)
 as
 	insert into Usuario values 
-	(@Nombre,@pass,@id_cargo);
+	(@id_cargo,@Nombre,@pass,@correo);
 go
+
 
 create proc sp_BuscarUsuario
 @Usuario varchar(50),
-@pass nvarchar(30)
+@pass nvarchar(30),
+@Tipo varchar(50)
 as
-	select *from Usuario u where u.Usuario = @Usuario
+
+	if @Tipo = 'login'
+	begin
+	select u.usuario, c.Nombre_Cargo, u.correo from Usuario u
+	inner join Cargo c 
+	on u.id_cargo = c.id_cargo
+	where u.Usuario = @Usuario
 	and u.clave = @pass 
+	end
+
+	else if @Tipo = 'RecuperarUsuario'
+	begin 
+	select u.usuario,u.clave, u.correo from Usuario u
+	where u.Usuario = @Usuario
+	end 
 go
+ 
+
 ----Cargo
 create proc sp_addCargo
 @Cargo varchar(50)
@@ -214,9 +232,6 @@ go
  where
  p.Nombre like @Dato +'%' or
  tp.Tipo like @Dato + '%'
-
-
-
 
 
 
