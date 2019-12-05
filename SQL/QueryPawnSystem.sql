@@ -14,6 +14,8 @@ create table Cliente_Vendedor(
 	Segundo_Apellido varchar(50),
 	Cédula varchar(50),
 	Dirrección varchar(100),
+	Telefono nvarchar(10),
+	Correo varchar(50)
 );
 
 create table Cliente_Comprador(
@@ -22,10 +24,10 @@ create table Cliente_Comprador(
 	Segundo_Nombre varchar(50),
 	Primer_Apellido varchar(50),
 	Segundo_Apellido varchar(50),
-	Cédula varchar(50),
-	Dirrección varchar(100),
 	Telefono nvarchar(10),
-	Correo varchar(50)
+	Correo varchar(50),
+	Dirrección varchar(100),
+	Cédula varchar(50)
 );
 
 create table Empleado(
@@ -38,18 +40,6 @@ create table Empleado(
 	Dirrección varchar(100),
 	Telefono nvarchar(10),
 	Correo varchar(50)
-);
-
-create table Telefono(
-	Id_Telefono integer primary key identity(0,1),
-	Id_Cliente_Vendedor integer not null,
-	Telefono nvarchar(50)
-);
-
-create table Correo(
-	Id_Correo integer primary key identity(0,1),
-	Id_Cliente_Vendedor integer not null,
-	Correo nvarchar(50)
 );
 
 create table Empeño(
@@ -147,14 +137,6 @@ alter table Empeño
 add foreign key (Id_Cliente_Vendedor) 
 references Cliente_Vendedor(id_Cliente_Vendedor);
 
-alter table Telefono 
-add foreign key (Id_Cliente_Vendedor) 
-references Cliente_Vendedor(id_Cliente_Vendedor);
-
-alter table Correo 
-add foreign key (Id_Cliente_Vendedor) 
-references Cliente_Vendedor(id_Cliente_Vendedor);
-
 alter table Producto 
 add foreign key (Id_Tipo_Producto) 
 references Tipo_Producto(id_Tipo_Producto);
@@ -171,7 +153,26 @@ alter table Venta
 add foreign key (Id_Cliente_Comprador) 
 references Cliente_Comprador(id_Cliente_Comprador);
 
-alter table Detalle_Empeño
-add foreign key (Id_Empleado)
-references Empleado(Id_Empleado);
+--constrains
+
+alter table Cliente_Vendedor
+add constraint CK_Cliente_Cedula
+check (Cédula  like '[0-9][0-9][0-9][-][0-9][0-9][0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9][a-z]');
+
+alter table Empleado
+add constraint CK_Empleado
+check (Cédula  like '[0-9][0-9][0-9][-][0-9][0-9][0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9][a-z]');
+
+ALTER TABLE Producto
+add constraint CK_Producto
+check(Estado='Disponible' OR Estado='No Disponible');
+
+ALTER TABLE Usuario
+add constraint CK_rol_usuario
+check(usuario='ADMIN' OR usuario='EMPLEADO');
+
+ALTER TABLE Detalle_Empeño
+add constraint CK_Detalle_Empeño
+check(Estado='' OR Estado='');
+
 
