@@ -111,6 +111,23 @@ as
 
 
 --------------Fran
+---Mostrar todo
+create proc sp_mostrarCliente_Empleado
+@tipo varchar(20)
+as
+	if @tipo = 'Cliente'
+	begin
+	select Primer_Nombre, Segundo_Nombre,
+	Primer_Apellido, Segundo_Apellido,Cédula,
+	Dirrección from Cliente_Vendedor
+	end
+	else if @tipo = 'Empleado'
+	begin
+	select Primer_Nombre, Segundo_Nombre,
+	Primer_Apellido, Segundo_Apellido,Cédula,
+	Dirrección, Telefono, Correo from Empleado
+	end
+
 
 --Proceso para buscar un cliente o un empleado
 create proc sp_buscarCliente_Empleado
@@ -160,7 +177,7 @@ CREATE proc Actualizar_Cliente_Empleado
 @id_registro int, @p_nom varchar(15),
 @s_nom varchar(15), @p_apell varchar(15),
 @s_apell varchar(15), @dir varchar(70),
-@numero nvarchar(10), @correo varchar(50)
+@tel nvarchar(10), @corr varchar(50)
 as
 	IF @tipo = 'Cliente'
 	begin
