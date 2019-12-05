@@ -111,6 +111,7 @@ as
 
 
 --------------Fran
+--HACER PROCESO DE TABLA DE AMORTIZACION
 ---Mostrar todo
 create proc sp_mostrarCliente_Empleado
 @tipo varchar(20)
@@ -274,6 +275,14 @@ go
  where
  p.Nombre like @Dato +'%' or
  tp.Tipo like @Dato + '%'
+
+ create proc MostrarProducto
+ as
+ select p.Nombre,p.Descripcion,tp.Tipo,p.Valor 
+ , p.Precio_Venta, p.Estado
+ from Producto p
+inner join Tipo_Producto  tp
+ on p.Id_Tipo_Producto = tp.Id_Tipo_Producto 
 
 
 
