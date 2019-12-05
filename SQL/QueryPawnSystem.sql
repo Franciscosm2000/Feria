@@ -39,7 +39,8 @@ create table Empleado(
 	Cédula varchar(50),
 	Dirrección varchar(100),
 	Telefono nvarchar(10),
-	Correo varchar(50)
+	Correo varchar(50),
+	Estado varchar(50)
 );
 
 create table Empeño(

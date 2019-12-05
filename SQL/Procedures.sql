@@ -1,4 +1,6 @@
 use PawnSystem
+go
+
 CREATE PROCEDURE Insertar_Cliente_vendedor
 @p_nom varchar(50),
 @s_nom varchar(50), 
@@ -29,9 +31,10 @@ create procedure insertar_Empleado
 @cedula varchar(50),
 @dir varchar(100),
 @telefono nvarchar(10),
-@correo varchar(50)
+@correo varchar(50),
+@estado varchar(50)
 AS
-	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo);
+	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,@estado);
 	SELECT * FROM Empleado;
 
 create procedure insertar_Telefono_Cliente_Vendedor
