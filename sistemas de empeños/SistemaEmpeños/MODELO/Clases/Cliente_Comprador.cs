@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,29 +24,86 @@ namespace SistemaEmpeños.MODELO.Clases
         }
 
         //Metodos
-        public bool ActualizarDatos()
+       
+        public DataTable BuscarDatos(string datos)
         {
-            throw new NotImplementedException();
+            DataTable res = new DataTable();
+            try
+            {
+                using (var coneccion = GetConnection())
+                {
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.CommandText = "sp_buscarClienteComprador";
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.AddWithValue("@Dato", datos);
+                        SqlDataAdapter leer = new SqlDataAdapter(comando);
+                        leer.Fill(res);
+                        comando.Parameters.Clear();
+                    }//Termina 2do using
+                }//Termina primer using
+            }
+            catch (Exception e) { }
+
+            return res;
         }
 
-        public DataTable BuscarDatos()
+
+        //insertar datos
+        public bool InsertarDatos(Cliente_Empeñador datos)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                using (var conection = GetConnection())
+                {
+                    conection.Open();
+
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.CommandText = "Insertar_Cliente_Comprador";
+                        comando.CommandType = CommandType.StoredProcedure;
+
+                        comando.Parameters.AddWithValue("@p_nom", datos.Nombre1);
+                        comando.Parameters.AddWithValue("@s_nom", datos.Nombre2);
+                        comando.Parameters.AddWithValue("@p_apell", datos.Apellido1);
+                        comando.Parameters.AddWithValue("@s_apell", datos.Apellido2);
+                        comando.Parameters.AddWithValue("@tel", datos.Tel);
+                        comando.Parameters.AddWithValue("@correo", datos.Correo);
+                        comando.ExecuteNonQuery();
+
+                        comando.Parameters.Clear();
+
+                        return true;
+                    }//fin segundo using
+                } //fin primer using
+
+            }
+            catch (Exception e) { return false; }
         }
 
-        public bool Deshabilitar()
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool InsertarDatos()
-        {
-            throw new NotImplementedException();
-        }
-
+        //Mostrar todos los datos
         public DataTable MostrarDatos()
         {
-            throw new NotImplementedException();
+            DataTable res = new DataTable();
+            try
+            {
+                using (var coneccion = GetConnection())
+                {
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.CommandText = "sp_mostrarTodoClienteComprador";
+                        comando.CommandType = CommandType.StoredProcedure;
+                        SqlDataAdapter adp = new SqlDataAdapter(comando);
+                        adp.Fill(res);
+
+                    }//fin segundo using
+                }//fin primer using
+            }
+            catch (Exception e) { }
+
+            return res;
         }
     }
 }

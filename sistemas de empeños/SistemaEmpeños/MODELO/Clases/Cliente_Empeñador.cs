@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace SistemaEmpeños.MODELO.Clases
 {
-    class Cliente_Empeñador : Persona 
+    class Cliente_Empeñador : Persona
     {
         private int id;
         private string cedula;
         private string direccion;
 
-        public Cliente_Empeñador(int id,string nom1, string nom2,
+        public Cliente_Empeñador(int id, string nom1, string nom2,
             string apell1, string apell2,
-           string tel, string correo ,string cedula, string direccion)
+           string tel, string correo, string cedula, string direccion)
         {
             this.Id = id;
             this.Nombre1 = nom1;
@@ -27,15 +27,13 @@ namespace SistemaEmpeños.MODELO.Clases
             this.Cedula = cedula;
             this.Direccion = direccion;
         }
-        
+
         public string Cedula { get => cedula; set => cedula = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public int Id { get => id; set => id = value; }
 
         //Metodos
 
-        /*REVISAR*/
-        
         public bool ActualizarDatos(Cliente_Empeñador datos)
         {
             try
@@ -63,23 +61,35 @@ namespace SistemaEmpeños.MODELO.Clases
                         return true;
                     }//fin segundo using 
                 }//fin de primer using
-            }catch
+            } catch
             {
                 return false;
             }
         }
 
-        
-        public DataTable BuscarDatos(Cliente_Empeñador datos)
-        {
-            throw new NotImplementedException();
-        }
 
-
-        public bool Deshabilitar(Cliente_Empeñador datos)
+        public DataTable BuscarDatos(string datos)
         {
-            throw new NotImplementedException();
-        }
+            DataTable res = new DataTable();
+            try
+            {
+                using (var coneccion = GetConnection())
+                {
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.CommandText = "sp_buscarCliente_Empleado";
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.AddWithValue("@Tipo", "Cliente");
+                        comando.Parameters.AddWithValue("@Dato", datos);
+                        SqlDataAdapter leer = new SqlDataAdapter(comando);
+                        leer.Fill(res);
+                        comando.Parameters.Clear();
+                    }//Termina 2do using
+                }//Termina primer using
+            }catch (Exception e) { }
+
+            return res;
+        } 
 
 
         //insertar datos
@@ -122,20 +132,23 @@ namespace SistemaEmpeños.MODELO.Clases
         public DataTable MostrarDatos()
         {
             DataTable res = new DataTable();
-            using (var coneccion = GetConnection())
+            try
             {
-                using (var comando = new SqlCommand())
+                using (var coneccion = GetConnection())
                 {
-                    comando.CommandText = "sp_mostrarCliente_Empleado";
-                    comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.AddWithValue("@tipo","Cliente");
-                    comando.Parameters.Clear();
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.CommandText = "sp_mostrarCliente_Empleado";
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.AddWithValue("@tipo", "Cliente");
+                        comando.Parameters.Clear();
 
-                    SqlDataAdapter adp = new SqlDataAdapter(comando);
-                    adp.Fill(res);
+                        SqlDataAdapter adp = new SqlDataAdapter(comando);
+                        adp.Fill(res);
 
-                }//fin segundo using
-            }//fin primer using
+                    }//fin segundo using
+                }//fin primer using
+            }catch (Exception e) { }
 
             return res;
         }

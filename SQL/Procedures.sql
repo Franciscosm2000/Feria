@@ -128,6 +128,31 @@ as
 	Dirrección, Telefono, Correo from Empleado
 	end
 
+--Proceso para buscar un cliente comprador
+create proc sp_buscarClienteComprador
+@Dato varchar(100)
+as
+select 
+c.Primer_Nombre,
+c.Segundo_Nombre,
+c.Primer_Apellido,
+c.Segundo_Apellido,
+c.Cédula ,
+c.Dirrección
+from Cliente_Comprador c
+where c.Primer_Nombre like @Dato + '%' or
+	  c.Segundo_Nombre like @Dato + '%' or
+	  c.Primer_Apellido like @Dato + '%' or
+	  c.Segundo_Apellido like @Dato + '%' 
+
+---Mostrar todos los datos cliente comprador
+create proc sp_mostrarTodoClienteComprador
+as
+select Primer_Nombre, Segundo_Nombre,
+Primer_Apellido, Segundo_Apellido,
+Telefono, Correo
+ from Cliente_Comprador
+
 
 --Proceso para buscar un cliente o un empleado
 create proc sp_buscarCliente_Empleado
