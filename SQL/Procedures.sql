@@ -114,6 +114,49 @@ as
 
 
 --------------Fran
+--HACER PROCESO DE TABLA DE AMORTIZACION
+---Mostrar todo
+create proc sp_mostrarCliente_Empleado
+@tipo varchar(20)
+as
+	if @tipo = 'Cliente'
+	begin
+	select Primer_Nombre, Segundo_Nombre,
+	Primer_Apellido, Segundo_Apellido,Cédula,
+	Dirrección from Cliente_Vendedor
+	end
+	else if @tipo = 'Empleado'
+	begin
+	select Primer_Nombre, Segundo_Nombre,
+	Primer_Apellido, Segundo_Apellido,Cédula,
+	Dirrección, Telefono, Correo from Empleado
+	end
+
+--Proceso para buscar un cliente comprador
+create proc sp_buscarClienteComprador
+@Dato varchar(100)
+as
+select 
+c.Primer_Nombre,
+c.Segundo_Nombre,
+c.Primer_Apellido,
+c.Segundo_Apellido,
+c.Cédula ,
+c.Dirrección
+from Cliente_Comprador c
+where c.Primer_Nombre like @Dato + '%' or
+	  c.Segundo_Nombre like @Dato + '%' or
+	  c.Primer_Apellido like @Dato + '%' or
+	  c.Segundo_Apellido like @Dato + '%' 
+
+---Mostrar todos los datos cliente comprador
+create proc sp_mostrarTodoClienteComprador
+as
+select Primer_Nombre, Segundo_Nombre,
+Primer_Apellido, Segundo_Apellido,
+Telefono, Correo
+ from Cliente_Comprador
+
 
 --Proceso para buscar un cliente o un empleado
 create proc sp_buscarCliente_Empleado
@@ -163,7 +206,7 @@ CREATE proc Actualizar_Cliente_Empleado
 @id_registro int, @p_nom varchar(15),
 @s_nom varchar(15), @p_apell varchar(15),
 @s_apell varchar(15), @dir varchar(70),
-@numero nvarchar(10), @correo varchar(50)
+@tel nvarchar(10), @corr varchar(50)
 as
 	IF @tipo = 'Cliente'
 	begin
@@ -235,6 +278,14 @@ go
  where
  p.Nombre like @Dato +'%' or
  tp.Tipo like @Dato + '%'
+
+ create proc MostrarProducto
+ as
+ select p.Nombre,p.Descripcion,tp.Tipo,p.Valor 
+ , p.Precio_Venta, p.Estado
+ from Producto p
+inner join Tipo_Producto  tp
+ on p.Id_Tipo_Producto = tp.Id_Tipo_Producto 
 
 
 
