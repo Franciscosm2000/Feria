@@ -25,9 +25,7 @@ create table Cliente_Comprador(
 	Primer_Apellido varchar(50),
 	Segundo_Apellido varchar(50),
 	Telefono nvarchar(10),
-	Correo varchar(50),
-	Dirrección varchar(100),
-	Cédula varchar(50)
+	Correo varchar(50)
 );
 
 create table Empleado(
@@ -175,5 +173,8 @@ check(usuario='ADMIN' OR usuario='EMPLEADO');
 ALTER TABLE Detalle_Empeño
 add constraint CK_Detalle_Empeño
 check(Estado='' OR Estado='');
+
+
+
 
 
