@@ -1,4 +1,4 @@
-create database PawnSystem
+drop database PawnSystem
 go
 
 use PawnSystem
@@ -94,6 +94,7 @@ create table Detalle_Venta(
 create table Venta(
 	Id_Venta integer primary key identity(0,1),
 	Id_Cliente_Comprador integer not null,
+	Id_Empleado integer not null,
 	Fecha date
 );
 
@@ -151,6 +152,10 @@ references Venta(id_Venta);
 alter table Venta 
 add foreign key (Id_Cliente_Comprador) 
 references Cliente_Comprador(id_Cliente_Comprador);
+
+alter table Venta
+add foreign key (Id_Empleado) 
+references Empleado(id_Empleado);
 
 --constrains
 
