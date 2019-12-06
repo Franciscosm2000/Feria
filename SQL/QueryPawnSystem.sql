@@ -61,7 +61,6 @@ create table Detalle_Empeño(
 	Id_Detalle_Empeño integer primary key identity(0,1),
 	Id_Empeño integer not null,
 	Id_producto integer not null,
-	Id_Empleado integer not null,
 	Monto_Empeño money,
 	Cuota Integer,
 	Frecuencia varchar(20),

@@ -49,14 +49,6 @@ as
 	insert into Correo values(@correo);
 	select * from Correo;
 
-create procedure insertar_empeño
-@id_cliente_vendedor integer,
-@fecha Date,
-@Estado varchar(50)
-as
-	insert into Empeño values(@id_cliente_vendedor,@fecha,@Estado)
-	select * from Empeño;
-
 create procedure insertar_pago_empeño
 @id_empeño integer,
 @fecha date,
@@ -65,19 +57,6 @@ create procedure insertar_pago_empeño
 as
 	insert into Pago_Empeño values(@id_empeño,@fecha,@monto_pagado,@estado);
 	select * from Pago_Empeño;
-
-create procedure insertar_detalle_empeño
-@id_empeño integer,
-@id_producto integer,
-@id_empleado integer,
-@monto_empeño money,
-@cuota integer,
-@frecuencia varchar(20),
-@fecha_vencimiento date,
-@estado varchar(50)
-as
-	insert into Detalle_Empeño values(@id_empeño,@id_producto,@id_empleado,@monto_empeño,@cuota,@frecuencia,@fecha_vencimiento,@estado);
-	select * from Detalle_Empeño;
 
 
 create procedure insertar_producto
@@ -121,7 +100,29 @@ insert into  Detalle_Venta values
 
 go
 
+--Empeno 
+create proc sp_add_Empeno
+@id_cliente_vendedor int,
+@idEmpeno int,
+@idProducto int,
+@idEmpleado int,
+@Monto_Empeno money,
+@Cuota int,
+@frecuencia int,
+@FechaVencimiento date,
+@Estado varchar(50)
+as
+	insert into Empeño values
+	(@id_cliente_vendedor,@idEmpleado,GETDATE());
 
+	declare @idE int
+	set @idE = (select *from Empeño e where e.Id_Cliente_Vendedor 
+	=@id_cliente_vendedor and e.Id_Empleado = @idEmpleado);
+
+	insert into Detalle_Empeño values
+	(@idE,@idProducto,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
+	,@Estado);
+go
 
 --------------Fran
 --HACER PROCESO DE TABLA DE AMORTIZACION
