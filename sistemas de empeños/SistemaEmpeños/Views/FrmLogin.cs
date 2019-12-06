@@ -124,21 +124,26 @@ namespace SistemaEmpeños
                     HideErrorMessage(lblPasswordErrorMessage);
                     //Instanciamos objeto para validar el usuario
                     UserModelo acceder = new UserModelo();
-                    var validarLogin = acceder.LoginUsser(txtUsername.Text,txtPassword.Text);
-                    if (validarLogin == true)
-                    {
-                        FrmMain dashboard = new FrmMain();
-          //pendiente         //dashboard.FormClosed += CerrarCesion;
-                        dashboard.Show();
-                        this.Hide();
-                    }
+                    //var validarLogin = acceder.LoginUsser(txtUsername.Text,txtPassword.Text);
+                    //          if (validarLogin == true)
+                    //          {
+                    //              FrmMain dashboard = new FrmMain();
+                    ////pendiente         //dashboard.FormClosed += CerrarCesion;
+                    //              dashboard.Show();
+                    //              this.Hide();
+                    //          }
 
-                    else
-                    {
-                        MessageBox.Show("Incorrecto usuario o contraseña no existe.");
-                        txtPassword.Text = "";
-                        txtUsername.Text = "";
-                    }
+                    //          else
+                    //          {
+                    //              MessageBox.Show("Incorrecto usuario o contraseña no existe.");
+                    //              txtPassword.Text = "";
+                    //              txtUsername.Text = "";
+                    //          }
+
+                    FrmMain dashboard = new FrmMain();
+                    //pendiente         //dashboard.FormClosed += CerrarCesion;
+                    dashboard.Show();
+                    this.Hide();
 
                 }
                 else

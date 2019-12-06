@@ -91,9 +91,9 @@
             this.label2.ForeColor = System.Drawing.Color.LightGray;
             this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 33);
+            this.label2.Size = new System.Drawing.Size(206, 33);
             this.label2.TabIndex = 4;
-            this.label2.Text = "REGISTRO";
+            this.label2.Text = "INICIAR SESIÓN";
             // 
             // btnClose
             // 
