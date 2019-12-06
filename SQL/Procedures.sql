@@ -98,19 +98,29 @@ as
 	insert into Tipo_Producto values(@tipo,@descripcion);
 	select * from Tipo_Producto;
 
-create procedure insertar_venta
-@id_cliente_comprador integer,
-@fecha date
+	---vta
+create proc sp_Realizar_Venta
+@id_ClienteComprador int,
+@id_Producto int,
+@id_Empleado int
 as
-	insert into Venta values(@id_cliente_comprador,@fecha);
-	select * from Venta;
 
-create procedure insertar_detalle_venta
-@id_venta integer,
-@id_producto integer
-as
-	insert into Detalle_Venta values(@id_venta,@id_producto);
-	select * from Detalle_Venta;
+insert into Venta values
+(@id_ClienteComprador,@id_Empleado,GETDATE());
+
+declare @id_venta int
+
+set @id_venta = (
+select v.Id_Venta from Venta v 
+where Id_Cliente_Comprador
+= @id_ClienteComprador and v.Id_Empleado = @id_Empleado
+ and Fecha = GETDATE());
+
+insert into  Detalle_Venta values
+(@id_venta,@id_Producto)
+
+go
+
 
 
 --------------Fran
