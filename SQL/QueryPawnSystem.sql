@@ -44,8 +44,8 @@ create table Empleado(
 create table Empeño(
 	Id_Empeño integer primary key identity(0,1),
 	Id_Cliente_Vendedor integer not null,
-	Fecha Date,
-	Estado varchar(50)
+	Id_Empleado integer not null,
+	Fecha Date
 );
 
 
