@@ -122,13 +122,13 @@ namespace SistemaEmpeños
                 if (txtPassword.Text != "CONTRASEÑA")
                 {
                     HideErrorMessage(lblPasswordErrorMessage);
-                    //Instanciamos objeto para validar el usuario
+                   // Instanciamos objeto para validar el usuario
                     UserModelo acceder = new UserModelo();
-                    var validarLogin = acceder.LoginUsser(txtUsername.Text,txtPassword.Text);
+                    var validarLogin = acceder.LoginUsser(txtUsername.Text, txtPassword.Text);
                     if (validarLogin == true)
                     {
                         FrmMain dashboard = new FrmMain();
-          //pendiente         //dashboard.FormClosed += CerrarCesion;
+                        //pendiente         //dashboard.FormClosed += CerrarCesion;
                         dashboard.Show();
                         this.Hide();
                     }
