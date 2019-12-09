@@ -36,6 +36,5 @@ namespace SistemaEmpeños.MODELO.Clases
         }
         //contructor vacio
         public Persona() { }
-
     }
 }

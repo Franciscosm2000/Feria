@@ -31,12 +31,12 @@ create procedure insertar_Empleado
 @cedula varchar(50),
 @dir varchar(100),
 @telefono nvarchar(10),
-@correo varchar(50),
-@estado varchar(50)
+@correo varchar(50)
 AS
-	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,@estado);
+	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,'HABILITADO');
 	SELECT * FROM Empleado;
 
+EXEC insertar_Empleado 's','s','sdf','fdsa','001520','adfas','asdfas','s'
 create procedure insertar_Telefono_Cliente_Vendedor
 @telefono nvarchar(50)
 as
@@ -127,21 +127,23 @@ go
 --------------Fran
 --HACER PROCESO DE TABLA DE AMORTIZACION
 ---Mostrar todo
-create proc sp_mostrarCliente_Empleado
+alter proc sp_mostrarCliente_Empleado
 @tipo varchar(20)
 as
 	if @tipo = 'Cliente'
 	begin
-	select Primer_Nombre, Segundo_Nombre,
-	Primer_Apellido, Segundo_Apellido,Cédula,
+	select CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
+	CONCAT(Primer_Apellido,'',Segundo_Apellido),Cédula,
 	Dirrección from Cliente_Vendedor
 	end
 	else if @tipo = 'Empleado'
 	begin
-	select Primer_Nombre, Segundo_Nombre,
-	Primer_Apellido, Segundo_Apellido,Cédula,
-	Dirrección, Telefono, Correo from Empleado
+	select CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
+	Concat(Primer_Apellido,' ',Segundo_Apellido)as Apellidos,Cédula,
+	Dirrección, Telefono, Correo, Estado from Empleado
 	end
+
+	exec sp_mostrarCliente_Empleado 'Empleado'
 
 --Proceso para buscar un cliente comprador
 create proc sp_buscarClienteComprador
@@ -210,11 +212,12 @@ if @Tipo = 'Empleado'
 		  c.Cédula like @Dato + '%';
 	end
 
+	exec sp_buscarCliente_Empleado 'Empleado','fra'
 
 --proceso para actualizar datos del cliente y del empleado
 CREATE proc Actualizar_Cliente_Empleado
 @tipo varchar(20),
-@id_registro int, @p_nom varchar(15),
+@id_Cedula int, @p_nom varchar(15),
 @s_nom varchar(15), @p_apell varchar(15),
 @s_apell varchar(15), @dir varchar(70),
 @tel nvarchar(10), @corr varchar(50)
@@ -223,8 +226,9 @@ as
 	begin
 	UPDATE Cliente_Vendedor SET Primer_Nombre = @p_nom,
 	Segundo_Nombre = @s_nom, Primer_Apellido = @p_apell,
-	Segundo_Apellido= @s_apell, Dirrección = @dir
-	WHERE Id_Cliente_Vendedor =@id_registro;
+	Segundo_Apellido= @s_apell, Dirrección = @dir,
+	Telefono = @tel , Correo = @corr
+	WHERE Cédula = @id_Cedula;
 	end
 
 	If @tipo ='Empleado'
@@ -232,8 +236,8 @@ as
 	UPDATE Empleado SET Primer_Nombre = @p_nom,
 	Segundo_Nombre = @s_nom, Primer_Apellido = @p_apell,
 	Segundo_Apellido= @s_apell, Dirrección = @dir,
-	Telefono =@numero , Correo = @correo
-	WHERE Id_Empleado =@id_registro;
+	Telefono =@tel , Correo = @corr
+	WHERE Cédula = @id_Cedula;
 	end
 -----Usuario
 create proc sp_addUsuario
@@ -245,7 +249,7 @@ as
 	insert into Usuario values 
 	(@id_cargo,@Nombre,@pass,@correo);
 go
-
+exec sp_addUsuario'fran','123',0,'dsa'
 
 create proc sp_BuscarUsuario
 @Usuario varchar(50),
@@ -278,7 +282,7 @@ as
 	(@Cargo);
 go
 
-
+exec sp_addCargo 'Administrador'
  ----Producto
 
  create proc BuscarProducto
@@ -298,6 +302,17 @@ go
 inner join Tipo_Producto  tp
  on p.Id_Tipo_Producto = tp.Id_Tipo_Producto 
 
+ SELECT *FROM EMPLEADO
 
 
-
+ create proc sp_Cambiar_EstadoEmpleado
+ @Cedula nvarchar(16)
+ as
+ if((SELECT estado FROM Empleado WHERE Cédula=@Cedula)='HABILITADO')
+	BEGIN
+		UPDATE Empleado SET estado='DESHABILITADO' WHERE Cédula=@Cedula;
+	END
+	ELSE
+	BEGIN
+		UPDATE Empleado SET estado='HABILITADO' WHERE Cédula=@Cedula;
+	END
