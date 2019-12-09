@@ -32,6 +32,26 @@ namespace SistemaEmpeños
         {
             Dispose();
         }
+
+        private void MainContainer_Panel1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel2_Leave(object sender, EventArgs e)
+        {
+
+        }
         // Ends btnClose Handlers
     }
 }

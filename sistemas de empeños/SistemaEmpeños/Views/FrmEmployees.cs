@@ -157,6 +157,11 @@ namespace SistemaEmpeños
             btnSave.ForeColor = Color.FromArgb(34, 30, 31);
             btnSave.Image = SistemaEmpeños.Properties.Resources.icon_save;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
         // End Miscellaneous Methods
     }
 }
