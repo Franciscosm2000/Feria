@@ -214,7 +214,7 @@ namespace SistemaEmpeños
             FrmAccount f = new FrmAccount();
             f.Show();
         }
-
+        //Cambiar Estado
         private void button2_Click(object sender, EventArgs e)
         {
             ControlEmpleado c = new ControlEmpleado();

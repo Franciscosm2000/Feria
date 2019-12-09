@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CONTROLADOR\ControladorCliente.cs" />
     <Compile Include="CONTROLADOR\ControlEmpleado.cs" />
     <Compile Include="CONTROLADOR\SoporteEmail.cs" />
     <Compile Include="CONTROLADOR\UserModelo.cs" />

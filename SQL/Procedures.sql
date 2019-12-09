@@ -102,27 +102,59 @@ go
 
 --Empeno 
 create proc sp_add_Empeno
-@id_cliente_vendedor int,
 @idEmpeno int,
-@idProducto int,
 @idEmpleado int,
 @Monto_Empeno money,
 @Cuota int,
 @frecuencia int,
 @FechaVencimiento date,
-@Estado varchar(50)
+--Producto
+@id_tipo_producto integer,
+@valor money,
+@descripcion varchar(100),
+@nombre varchar(50),
+@precio_venta money,
+--Cliente
+@p_nom varchar(50),
+@s_nom varchar(50), 
+@p_apell varchar(50),
+@s_apell varchar(50), 
+@cedula varchar(50),
+@dir varchar(100),
+@tel nvarchar(10),
+@corr varchar(50)
+
 as
+
+	INSERT INTO Cliente_Vendedor VALUES
+	(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@tel,@corr);
+	
+	declare @idClient int
+	set @idClient = (select cv.Id_Cliente_Vendedor from Cliente_Vendedor cv where cv.Cédula = @cedula);
+
 	insert into Empeño values
-	(@id_cliente_vendedor,@idEmpleado,GETDATE());
+	(@idClient,@idEmpleado,GETDATE());
 
+	
+	insert into Producto values
+	(@id_tipo_producto,@valor,@descripcion,@nombre,@precio_venta,'HABILITADO');
+		
+		--Id empeno	
 	declare @idE int
-	set @idE = (select *from Empeño e where e.Id_Cliente_Vendedor 
-	=@id_cliente_vendedor and e.Id_Empleado = @idEmpleado);
+	set @idE = (select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor 
+	=@idClient and e.Id_Empleado = @idEmpleado);
+	
+		--Idproducto
+	declare @idP int
+	set @idP = (select Id_Producto from Producto p where p.Nombre = @nombre and p.Id_Tipo_Producto = @id_tipo_producto
+	and p.Descripcion = @descripcion);
 
+		
 	insert into Detalle_Empeño values
-	(@idE,@idProducto,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
-	,@Estado);
+	(@idE,@idP,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
+	,'HABILITADO');
 go
+select *from Detalle_Empeño
 
 --------------Fran
 --HACER PROCESO DE TABLA DE AMORTIZACION
