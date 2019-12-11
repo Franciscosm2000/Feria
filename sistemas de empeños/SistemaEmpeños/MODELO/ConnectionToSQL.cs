@@ -16,7 +16,7 @@ namespace SistemaEmpeños.MODELO
         public ConnectionToSQL()
         {
             //Cadena servidor 
-            connectionString = @"server = tcp:FRANCISCO,1433; DataBase = PawnSystem; User Id = CasaDeEmpeño; Password = 1320022077";
+            connectionString = @"server=tcp:FRANCISCO,12500; DataBase =PawnSystem; User Id = CasaDeEmpeño; Password=1320022077";
             //Cadena de Coneccion Fran
            // connectionString = "server = FRANCISCO; Database = PawnSystem ; User Id =sa; Password = 1320022077";
             //Cadena de coneccion Saul

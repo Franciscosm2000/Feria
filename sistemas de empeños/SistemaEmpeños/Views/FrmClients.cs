@@ -87,7 +87,7 @@ namespace SistemaEmpeños
             cont.ActualizarCliente(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorr.Text, txtCedula.Text, txtDireccion.Text);
         
             dgvCliente.DataSource = null;
-            dgvCliente.DataSource = ControlEmpleado.MostrarDatos();
+            dgvCliente.DataSource = ControladorCliente.MostrarDatos();
         }
         //Busqueda
         private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
