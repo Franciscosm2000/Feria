@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaEmpeños.CONTROLADOR;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -66,6 +67,7 @@ namespace SistemaEmpeños
         private void FrmSales_Load(object sender, EventArgs e)
         {
             SetTabActive();
+            dgvProducto.DataSource = ControlProducto.MostarDatos();
         }
         // End FrmSales Handlers
 
@@ -203,6 +205,35 @@ namespace SistemaEmpeños
             btnInvoice.ForeColor = Color.FromArgb(34, 30, 31);
             btnInvoice.Image = SistemaEmpeños.Properties.Resources.icon_invoice;
         }
+
+        private void MainContainer_Panel1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel2_Leave(object sender, EventArgs e)
+        {
+
+        }
         // End Miscellaneous Methods
+
+        private void dgvProducto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = 0;
+            index = dgvProducto.CurrentRow.Index;
+            txtNombreProducto.Text = dgvProducto[0, index].Value.ToString();
+            txtDescripcion.Text = dgvProducto[1, index].Value.ToString();
+            txtValor.Text = dgvProducto[3, index].Value.ToString();
+        }
     }
 }

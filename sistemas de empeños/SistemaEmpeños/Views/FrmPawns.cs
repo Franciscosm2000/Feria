@@ -390,5 +390,33 @@ namespace SistemaEmpeños
            // MessageBox.Show(cuota.Text = Convert.ToString(ControlEmpeno.mostrarTablaAmortizacion("2", txtMonto_.Text).Rows[0]));
             
         }
+
+        private void MainContainer_Panel1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainContainer_Panel2_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SetTabInactiveEffect(lblPawnsTab, null);
+            SetTabInactiveEffect(lblnewPawnTab, null);
+            SetTabActiveEffect(lblPayTab, null);
+            tabControl.SelectedTab = payTabPage;
+        }
     }
 }

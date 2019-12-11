@@ -68,7 +68,7 @@ namespace SistemaEmpeños.MODELO.POJO
             }//Primer fin using
         }
 
-        private DataTable Mostrar()
+        public DataTable Mostrar()
         {
             DataTable res = new DataTable();
             using (var coneccion = GetConnection())
@@ -77,6 +77,7 @@ namespace SistemaEmpeños.MODELO.POJO
                 {
                     comando.CommandText = "MostrarProducto";
                     comando.CommandType = CommandType.StoredProcedure;
+                    comando.Connection = coneccion;
 
                     SqlDataAdapter adp = new SqlDataAdapter(comando);
                     adp.Fill(res);

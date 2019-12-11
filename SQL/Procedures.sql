@@ -450,4 +450,4 @@ as
 
 
 
-	select *from Producto
+	
