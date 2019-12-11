@@ -96,17 +96,16 @@ namespace SistemaEmpeños.MODELO.Clases
 
 
         //insertar datos
-        public bool InsertarDatos(Cliente_Empeñador datos)
+        public void InsertarDatos(Cliente_Empeñador datos)
         {
-            try
-            {
-
                 using (var conection = GetConnection())
                 {
                     conection.Open();
 
                     using (var comando = new SqlCommand())
                     {
+                    comando.Connection = conection;
+
                         comando.CommandText = "Insertar_Cliente_vendedor";
                         comando.CommandType = CommandType.StoredProcedure;
 
@@ -122,12 +121,9 @@ namespace SistemaEmpeños.MODELO.Clases
 
                         comando.Parameters.Clear();
 
-                        return true;
+                     
                     }//fin segundo using
                 } //fin primer using
-
-            }
-            catch (Exception e) { return false;}
         }
 
 

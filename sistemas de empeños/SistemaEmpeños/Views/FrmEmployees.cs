@@ -201,12 +201,12 @@ namespace SistemaEmpeños
             int poc = 0; //
             txtCedula.Enabled = false;
             poc = dgvEmpleados.CurrentRow.Index; //octenemos la posicion\
-            txtCedula.Text = dgvEmpleados[2, poc].Value.ToString();
-            txtNombre.Text = dgvEmpleados[0, poc].Value.ToString();
-            txtApellido.Text = dgvEmpleados[1, poc].Value.ToString();
-            txtDireccion.Text = dgvEmpleados[3, poc].Value.ToString();
-            txtTel.Text = dgvEmpleados[4, poc].Value.ToString();
-            txtCorreo.Text = dgvEmpleados[5, poc].Value.ToString();
+            txtCedula.Text = dgvEmpleados[3, poc].Value.ToString();
+            txtNombre.Text = dgvEmpleados[1, poc].Value.ToString();
+            txtApellido.Text = dgvEmpleados[2, poc].Value.ToString();
+            txtDireccion.Text = dgvEmpleados[4, poc].Value.ToString();
+            txtTel.Text = dgvEmpleados[5, poc].Value.ToString();
+            txtCorreo.Text = dgvEmpleados[6, poc].Value.ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)

@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace SistemaEmpeños.CONTROLADOR
 {
-    class EmpenoFran
+    class ControlTipoProducto
     {
-        public static DataTable mostrar(string dato)
+        public static DataTable Most()
         {
-            EmpeñoFran e = new EmpeñoFran();
-            return e.BuscarDato(dato);
-        }
+            TipoProducto ti = new TipoProducto();
+
+            return ti.Mostrar_tipo_producto();
+        } 
     }
 }

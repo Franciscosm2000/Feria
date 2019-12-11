@@ -26,6 +26,9 @@ namespace SistemaEmpeños
             //Inicializacion de cmbESTADO
             cmbEstado.Items.Add("HABILITADDO");
             cmbEstado.Items.Add("DESHABILITADDO");
+            //INICIALIZACION DE CMBFRECUENCIA
+            cmbFrecuencia_.Items.Add("Mensual");
+            cmbFrecuencia_.Items.Add("Quinsenal");
         }
 
         // Start btnClose Handlers
@@ -241,7 +244,7 @@ namespace SistemaEmpeños
         public void MostrarTabla(string a)
         {
             dgvPawns.DataSource = null;
-            dgvPawns.DataSource = EmpenoFran.mostrar(a);
+            dgvPawns.DataSource = ControlEmpeno.mostrar(a);
         }
 
         //MANDAR DATOS
@@ -308,6 +311,50 @@ namespace SistemaEmpeños
                 MessageBox.Show("La fecha es menor a la actual");
             }
             MessageBox.Show(dateRango2.Text);
+        }
+
+        //Evento para mostrar los datos en el comboBox
+        private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+            cmbEmpleado.ValueMember = "Id_Empleado";
+            cmbEmpleado.DisplayMember = "Nombres";
+            cmbEmpleado.DataSource = ControlEmpleado.MostrarDatos();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+            //datos empleado
+            idEmpleado.DataSource = ControlEmpleado.MostrarDatos();
+            idEmpleado.ValueMember = "Id_Empleado";
+            idEmpleado.DisplayMember = "Nombres";
+          
+            //datos producto 
+            idTipo.DataSource = ControlTipoProducto.Most();
+            idTipo.DisplayMember = "Tipo";
+            idTipo.ValueMember = "Id_Tipo_Producto";
+            
+        }
+
+        private void btnInvoice_Click(object sender, EventArgs e)
+        {
+            
+                ControlEmpeno c = new ControlEmpeno();
+            c.InsertarDatos(txtNombre.Text, txtNombre2.Text, txtApellido.Text, txtApellido2.Text, txttel.Text, txtCorreo_.Text, 
+                txtCedula.Text, txtDireccion.Text,Convert.ToInt32( idTipo), Convert.ToDouble(txtValor.Text), txtDescripcion.Text,
+                txtNombreProducto.Text, Convert.ToDouble (txtValor), cmbEstado.Text, Convert.ToInt32(idEmpleado.Text), Convert.ToDouble(txtMonto_.Text)
+                , Convert.ToInt32(txtCuota.Text), cmbFrecuencia_.Text, dateVencimiento_.Value.Date);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt = ControlEmpeno.mostrarTablaAmortizacion("2", txtMonto_.Text);
+
+            var cell = dt.Rows[0][4];
+            cuota.Text = cell.ToString() ;
+
+           // MessageBox.Show(cuota.Text = Convert.ToString(ControlEmpeno.mostrarTablaAmortizacion("2", txtMonto_.Text).Rows[0]));
+            
         }
     }
 }

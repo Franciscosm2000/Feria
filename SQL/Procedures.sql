@@ -170,7 +170,7 @@ as
 	end
 	else if @tipo = 'Empleado'
 	begin
-	select CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
+	select Id_Empleado ,CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
 	Concat(Primer_Apellido,' ',Segundo_Apellido)as Apellidos,Cédula,
 	Dirrección, Telefono, Correo, Estado from Empleado
 	end
@@ -204,7 +204,7 @@ Telefono, Correo
 
 
 --Proceso para buscar un cliente o un empleado
-create proc sp_buscarCliente_Empleado
+alter proc sp_buscarCliente_Empleado
 @Tipo varchar(20),
 @Dato varchar(100)
 as
@@ -336,6 +336,14 @@ inner join Tipo_Producto  tp
 
  SELECT *FROM EMPLEADO
 
+ --Mostrar Tipo Producto
+ create proc MostrarTipoProducto
+ as
+ select tp.Id_Tipo_Producto, tp.Tipo from 
+  Tipo_Producto tp 
+
+
+  exec MostrarTipoProducto
 
  create proc sp_Cambiar_EstadoEmpleado
  @Cedula nvarchar(16)
@@ -388,3 +396,53 @@ as
 select CONCAT(YEAR(GETDATE()),'/',MONTH(GETDATE()),'/',day(GETDATE()))
 
 select GETDATE()
+
+
+	-----Tabla amortizacion
+	
+create PROCEDURE sp_prestamo 
+@meses INT, @tasa float, @principal money, @email VARCHAR(50)
+as
+
+	IF OBJECT_ID('tempdb.dbo.#Prestamo') IS NOT NULL
+	BEGIN
+		DROP TABLE #prestamo;
+	END
+
+	CREATE TABLE #prestamo(
+	id_prestamo INTEGER PRIMARY KEY IDENTITY(0,1),
+	meses INTEGER NOT NULL, 
+	fecha DATE NOT NULL,
+	principal MONEY NOT NULL,
+	cuota MONEY,
+	interes FLOAT,
+	aporte_capital FLOAT,
+	saldo_final FLOAT);
+
+	DECLARE @cuota MONEY, @interes FLOAT, @capital MONEY, @saldofinal MONEY
+	SET @cuota=(((@principal*(@tasa/12))/(1-POWER(1+(@tasa/12),-@meses))))
+
+	--llenada de tabla temporal
+	DECLARE @cont int, @fecha DATE;
+	SET @cont=1;
+	SET @fecha=GETDATE();
+	WHILE(@cont<=@meses)
+	BEGIN
+		IF(@cont=1)
+		BEGIN
+			SET @saldofinal=@principal;
+		END
+		ELSE
+		BEGIN
+			SET @principal=@saldofinal;
+		END
+		SET @interes=@saldofinal*(@tasa/12);
+		SET @capital=@cuota-@interes;
+		SET @saldofinal=@saldofinal-@capital;
+		INSERT INTO #prestamo VALUES(@cont, @fecha, @principal, @cuota, @interes, @capital, @saldofinal);
+		SET @fecha=DATEADD(MONTH, 1, @fecha); 
+		SET @cont=@cont+1;
+	END
+	select *from #prestamo
+	
+	exec sp_prestamo 2, 0.15, 8000, 'jf_mejiar547@live.com';

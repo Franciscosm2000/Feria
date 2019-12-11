@@ -33,6 +33,13 @@ namespace SistemaEmpeños.CONTROLADOR
             return c.MostrarDatos();
         }
 
+        public void InsertarDatos(string nom1, string nom2,
+            string apell1, string apell2,
+           string tel, string correo, string cedula, string direccion)
+        {
+            Cliente_Empeñador cli = new Cliente_Empeñador();
+            cli.InsertarDatos(cli);
+        }
       
     }
 }

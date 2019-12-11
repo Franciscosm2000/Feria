@@ -10,7 +10,7 @@ namespace SistemaEmpeños.MODELO.POJO
 {
     class Producto : ConnectionToSQL
     {
-        private int idProducto;
+
         private int idTipoProducto;
         private double valor;
         private string descripcion;
@@ -19,11 +19,10 @@ namespace SistemaEmpeños.MODELO.POJO
         private string estado;
 
         //Constructor
-        public Producto(int id, int tipo, double valor
+        public Producto( int tipo, double valor
             ,string descrip, string nom, double precioV
            ,string estado)
         {
-            this.IdProducto = id;
             this.IdTipoProducto = tipo;
             this.Valor = valor;
             this.Descripcion = descrip;
@@ -32,8 +31,9 @@ namespace SistemaEmpeños.MODELO.POJO
             this.Estado = estado;
         }
 
+        public Producto() { }
+
         //Get y set
-        public int IdProducto { get => idProducto; set => idProducto = value; }
         public int IdTipoProducto { get => idTipoProducto; set => idTipoProducto = value; }
         public double Valor { get => valor; set => valor = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
@@ -46,12 +46,12 @@ namespace SistemaEmpeños.MODELO.POJO
         {
             using (var coneccion = GetConnection())
             {
-                using (var comando = new SqlCommand)
+                using (var comando = new SqlCommand())
                 {
                     comando.CommandText="insertar_producto";
                     comando.CommandType = CommandType.StoredProcedure;
 
-                    comando.Parameters.AddWithValue("@id_tipo_producto",Datos.IdProducto);
+                    comando.Parameters.AddWithValue("@id_tipo_producto",Datos.IdTipoProducto);
                     comando.Parameters.AddWithValue("@estado",Datos.Estado);
                     comando.Parameters.AddWithValue("@valor",Datos.Valor);
                     comando.Parameters.AddWithValue("@descripcion",Datos.Descripcion);
@@ -86,11 +86,7 @@ namespace SistemaEmpeños.MODELO.POJO
             return res;
         }
 
-        private DataTable Buscar(string dato) { }
-
-        private bool Actualizar(Producto Datos) { }
-
-        private bool CambiarEstado(Producto Datos) { }
+     
 
     }
 }
