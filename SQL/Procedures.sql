@@ -449,5 +449,4 @@ as
 
 
 
-
-	
+ backup database PawnSystem to disk = 'C:\Users\FranciscoSM\Desktop\Feria\SQL\PawnSystem.bak'
