@@ -49,9 +49,11 @@ namespace SistemaEmpeños.MODELO.POJO
         public void Insertar_Empeño(Empeño datos,string ced, int idpr,string nom)
         {
             Cliente_Empeñador cliente = new Cliente_Empeñador();
+
             int id = Convert.ToInt32(cliente.MostrarId(ced).Rows[0][0]);
 
             Producto pro = new Producto();
+
             int idP = Convert.ToInt32(pro.MostrarId(nom,idpr).Rows[0][0]);
 
             using (var connecion = GetConnection())
@@ -74,7 +76,7 @@ namespace SistemaEmpeños.MODELO.POJO
                     comando.Parameters.AddWithValue("@FechaVencimiento", datos.Fechavencimiento);
 
                     MessageBox.Show(id.ToString()+" "+id.ToString());
-                   // comando.ExecuteNonQuery();
+                    comando.ExecuteNonQuery();
 
                     comando.Parameters.Clear();
                 }

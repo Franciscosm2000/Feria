@@ -127,9 +127,9 @@ as
 	set @idE = (select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor = @idClient and e.Id_Empleado = @idEmpleado )		
 	select @idE
 
-	/*insert into Detalle_Empeño values
+	insert into Detalle_Empeño values
 	(@idE,@idP,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
-	,'HABILITADO');*/
+	,'HABILITADO');
 	
 go
 select * FROM Empeño
@@ -155,9 +155,9 @@ alter proc sp_mostrarCliente_Empleado
 as
 	if @tipo = 'Cliente'
 	begin
-	select CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
-	CONCAT(Primer_Apellido,'',Segundo_Apellido),Cédula,
-	Dirrección from Cliente_Vendedor
+	select CONCAT(Primer_Nombre,' ',Segundo_Nombre) as Nombres,
+	CONCAT(Primer_Apellido,' ',Segundo_Apellido) as Apellido,Cédula,
+	Dirrección, Telefono, Correo from Cliente_Vendedor
 	end
 	else if @tipo = 'Empleado'
 	begin
@@ -166,8 +166,8 @@ as
 	Dirrección, Telefono, Correo, Estado from Empleado
 	end
 
-	exec sp_mostrarCliente_Empleado 'Empleado'
-
+	exec sp_mostrarCliente_Empleado 'Cliente'
+	
 --Proceso para buscar un cliente comprador
 create proc sp_buscarClienteComprador
 @Dato varchar(100)
@@ -389,7 +389,7 @@ select CONCAT(YEAR(GETDATE()),'/',MONTH(GETDATE()),'/',day(GETDATE()))
 
 select GETDATE()
 ----------------------------------------------------------------
-exec sp_BuscarEmpeño 'fran'
+exec sp_BuscarEmpeño 'xavier'
 	-----Tabla amortizacion
 	
 create PROCEDURE sp_prestamo 
