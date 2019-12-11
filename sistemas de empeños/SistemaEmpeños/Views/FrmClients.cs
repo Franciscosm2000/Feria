@@ -16,6 +16,8 @@ namespace SistemaEmpeños
         public FrmClients()
         {
             InitializeComponent();
+        //    dgvCliente.DataSource = null;
+            dgvCliente.DataSource = ControladorCliente.MostrarDatos();
         }
 
         // Start btnClose Handlers

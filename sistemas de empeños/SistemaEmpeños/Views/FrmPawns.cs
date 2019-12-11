@@ -252,16 +252,18 @@ namespace SistemaEmpeños
             if (dgvPawns[0, 0].Value.ToString().Equals("") || dgvPawns[0, 0].Value.ToString() == null) { }
             else
             {
-                int poc = 0; //
-                txtNcontrato.Enabled = false;
-                poc = dgvPawns.CurrentRow.Index; //octenemos la posicion\
-                txtNcontrato.Text = dgvPawns[0, poc].Value.ToString();
-                dateInicio.Text = dgvPawns[1, poc].Value.ToString();
-                //txtEmpleado.Text = dgvPawns[3, poc].Value.ToString();
-                txtMonto.Text = dgvPawns[6, poc].Value.ToString();
-                txtCuota.Text = dgvPawns[7, poc].Value.ToString();
-                cmbFrecuencia.Text = dgvPawns[8, poc].Value.ToString();
-                dateVencimiento.Text = dgvPawns[5, poc].Value.ToString();
+                 int poc = 0; //
+                 txtNcontrato.Enabled = false;
+                 poc = dgvPawns.CurrentRow.Index; //octenemos la posicion\
+                 textContratoId.Text = dgvPawns[0, poc].Value.ToString();
+                 dateInicioId.Text = dgvPawns[1, poc].Value.ToString();
+                 txtEmpleado.Text = dgvPawns[3, poc].Value.ToString();
+                 txtMonto.Text = dgvPawns[6, poc].Value.ToString();
+                 txtCuota.Text = dgvPawns[7, poc].Value.ToString();
+                 cmbFrecuencia.Text = dgvPawns[8, poc].Value.ToString();
+                 dateVencimiento.Text = dgvPawns[5, poc].Value.ToString();
+
+               
             }
         }
 

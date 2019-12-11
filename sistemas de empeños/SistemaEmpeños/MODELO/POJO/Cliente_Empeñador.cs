@@ -136,15 +136,18 @@ namespace SistemaEmpeños.MODELO.Clases
             {
                 using (var coneccion = GetConnection())
                 {
+                    coneccion.Open();
                     using (var comando = new SqlCommand())
                     {
+                        comando.Connection = coneccion;
                         comando.CommandText = "sp_mostrarCliente_Empleado";
                         comando.CommandType = CommandType.StoredProcedure;
                         comando.Parameters.AddWithValue("@tipo", "Cliente");
-                        comando.Parameters.Clear();
-
+                        
                         SqlDataAdapter adp = new SqlDataAdapter(comando);
                         adp.Fill(res);
+
+                        comando.ExecuteNonQuery();
 
                     }//fin segundo using
                 }//fin primer using
