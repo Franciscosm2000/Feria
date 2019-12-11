@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using System.Data;
 
 namespace SistemaEmpeños.MODELO.Servicio_Correo_Electronico
 {
@@ -54,6 +55,40 @@ namespace SistemaEmpeños.MODELO.Servicio_Correo_Electronico
             catch (Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                //Liberamos los recursos
+                Mensaje.Dispose();
+                smtpCliente.Dispose();
+            }
+        }
+
+
+        //amortizacion
+        public void EnviarEmailAmort(string sujeto,DataTable cuerpo, List<string> destinatario)
+        {
+            var Mensaje = new MailMessage();
+
+            try
+            {
+                Mensaje.From = new MailAddress(sendEmail);
+                //toda la lista de correo
+                foreach (string mail in destinatario)
+                {
+                    Mensaje.To.Add(mail);
+                }
+                Mensaje.Subject = sujeto;
+                Mensaje.Body = cuerpo.ToString();
+                Mensaje.Priority = MailPriority.Normal;
+
+                //protocolo de envio 
+
+                smtpCliente.Send(Mensaje);
+            }
+            catch (Exception e)
+            {
+                throw ;
             }
             finally
             {

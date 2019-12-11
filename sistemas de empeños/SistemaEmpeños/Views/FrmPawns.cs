@@ -1,4 +1,5 @@
 ﻿using SistemaEmpeños.CONTROLADOR;
+using SistemaEmpeños.MODELO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -335,37 +336,56 @@ namespace SistemaEmpeños
             idTipo.ValueMember = "Id_Tipo_Producto";
             
         }
-
+        //Ingresar Empeno
         private void btnInvoice_Click(object sender, EventArgs e)
         {
+            if (txtNombre.Text.Equals("") || txtNombre.Text == null
+              || txtNombre2.Text.Equals("") || txtNombre2.Text == null
+              || txtApellido.Text.Equals("") || txtApellido.Text == null
+              || txtApellido2.Text.Equals("") || txtApellido2.Text == null
+              || txttel.Text.Equals("") || txttel.Text.Equals("") ||
+                 txtCorreo_.Text.Equals("") || txtCorreo_.Text == null ||
+              txtCedula.Text.Equals("") || txtCedula.Text == null
+              || txtDireccion.Text.Equals("") || txtDireccion.Text == null) { MessageBox.Show("Rellene Todos los Campos"); }
 
-            ControladorCliente co = new ControladorCliente();
-            co.InsertarDatos(txtNombre.Text, txtNombre2.Text, txtApellido.Text, txtApellido2.Text, txttel.Text, txtCorreo_.Text,
-            txtCedula.Text, txtDireccion.Text);
+            else
+            {
+                ControladorCliente co = new ControladorCliente();
+                co.InsertarDatos(txtNombre.Text, txtNombre2.Text, txtApellido.Text, txtApellido2.Text, txttel.Text, txtCorreo_.Text,
+                txtCedula.Text, txtDireccion.Text);
 
-            ControlProducto cp = new ControlProducto();
-            cp.InsertarDatos(Convert.ToInt32(idTipo.SelectedValue), txtValor.Text
-           ,txtDescripcion.Text,txtNombreProducto.Text);
+                ControlProducto cp = new ControlProducto();
+                cp.InsertarDatos(Convert.ToInt32(idTipo.SelectedValue), txtValor.Text
+               , txtDescripcion.Text, txtNombreProducto.Text);
 
-            ControlEmpeno c = new ControlEmpeno();
-            c.InsertarDatos(Convert.ToInt32(idEmpleado.SelectedValue), Convert.ToDouble(txtMonto_.Text)
-           , Convert.ToInt32(txtCuota.Text),txtFrecuencia.Text, dateVencimiento_.Value.Date, txtCedula.Text,Convert.ToInt32(idTipo.SelectedValue),txtNombreProducto.Text);
+                ControlEmpeno c = new ControlEmpeno();
+                c.InsertarDatos(Convert.ToInt32(idEmpleado.SelectedValue), Convert.ToDouble(txtMonto_.Text)
+               , Convert.ToInt32(txtCuota.Text), txtFrecuencia.Text, dateVencimiento_.Value.Date, txtCedula.Text, Convert.ToInt32(idTipo.SelectedValue), txtNombreProducto.Text);
 
-            
+                AccesoDatoUsuario acc = new AccesoDatoUsuario();
+                acc.TablaDePago(txtCedula.Text,txtFrecuencia.Text,txtMonto_.Text);
+
+
+                MessageBox.Show("AGREGADO CORRECTAMENTE");
+            }
 
         }
 
-        //falta validar
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cuota.Text = "";
+            if (txtFrecuencia.Text.Equals("") || txtFrecuencia.Text == null || txtMonto_.Text == null || txtMonto_.Text.Equals(""))
+                MessageBox.Show("OBLIGATORIO LLENAR CAMPO FRECUENCIA Y MONTO");
+            else
+            {
+                cuota.Text = "";
 
-            DataTable dt = new DataTable();
-            dt = ControlEmpeno.mostrarTablaAmortizacion(txtFrecuencia.Text, txtMonto_.Text);
+                DataTable dt = new DataTable();
+                dt = ControlEmpeno.mostrarTablaAmortizacion(txtFrecuencia.Text, txtMonto_.Text);
 
-            var cell = dt.Rows[0][4];
-            cuota.Text = cell.ToString() ;
+                var cell = dt.Rows[0][4];
+                cuota.Text = cell.ToString();
+            }
 
            // MessageBox.Show(cuota.Text = Convert.ToString(ControlEmpeno.mostrarTablaAmortizacion("2", txtMonto_.Text).Rows[0]));
             

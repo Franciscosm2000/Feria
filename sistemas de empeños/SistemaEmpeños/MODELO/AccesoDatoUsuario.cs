@@ -99,5 +99,44 @@ namespace SistemaEmpeños.MODELO
             }
         }
 
+        public string TablaDePago(string cedula,string frecuencia,string monto)
+        {
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "sp_BuscarClient";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@cedula",cedula );
+                    DataTable t = new DataTable();
+                    t = ControlEmpeno.mostrarTablaAmortizacion(frecuencia, monto);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read() == true)
+                    {
+                        string Nombre = reader.GetString(0);
+                        string email = reader.GetString(1);
+
+                        var correo_ = new SoporteEmail();
+
+                        correo_.EnviarEmailAmort(sujeto: "TABLA DE AMORTIZACION DE PAGO",
+                            cuerpo: t , destinatario: new List<string> { email });
+
+                        return "Porfavor revice su correo.";
+                    }
+
+                    else
+                    {
+                        return "Lo sentimos, no cuenta con un correo electronico.";
+                    }
+
+                }
+            }
+        }
+
     }
 }

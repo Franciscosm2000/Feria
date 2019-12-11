@@ -163,21 +163,29 @@ namespace SistemaEmpeños
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-            if (txtNombre.Text == null || txtNombre.Text.Equals("") || txtApellido.Text == null || txtApellido.Text.Equals(""))
+            if (txtCedula.Text.Equals("") || txtCedula.Text == null || txtDireccion.Text.Equals("") || txtDireccion.Text == null
+                ||txtTel.Text.Equals("") || txtTel.Text == null
+                )
             {
-                MessageBox.Show("Error"); 
+                MessageBox.Show("LLENAR TODOS LOS CAMPOS");
             }
             else
             {
-                ControlEmpleado con = new ControlEmpleado();
 
-                string[] nombre = (txtNombre.Text).Split(' ');
-                string[] apellido = (txtApellido.Text).Split(' ');
+                if (txtNombre.Text == null || txtNombre.Text.Equals("") || txtApellido.Text == null || txtApellido.Text.Equals(""))
+                {
+                    MessageBox.Show("Error");
+                }
+                else
+                {
+                    ControlEmpleado con = new ControlEmpleado();
 
-                con.AddEmpleado(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+                    string[] nombre = (txtNombre.Text).Split(' ');
+                    string[] apellido = (txtApellido.Text).Split(' ');
+
+                    con.AddEmpleado(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+                }
             }
-
 
         }
         //Editar

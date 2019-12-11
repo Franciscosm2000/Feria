@@ -272,6 +272,14 @@ as
 	insert into Usuario values 
 	(@id_cargo,@Nombre,@pass,@correo);
 go
+--Buscar un solo cliente
+create proc sp_BuscarClient
+@cedula varchar(30)
+as
+	select concat(c.Primer_Nombre,' ',c.Primer_Apellido) as Nombre,c.Correo from Cliente_Vendedor c where c.Cédula = @cedula
+go
+
+
 exec sp_addUsuario'fran','123',0,'dsa'
 
 create proc sp_BuscarUsuario
