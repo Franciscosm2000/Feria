@@ -10,7 +10,7 @@ namespace SistemaEmpeños.MODELO.POJO
 {
     class Producto : ConnectionToSQL
     {
-        private int idProducto;
+
         private int idTipoProducto;
         private double valor;
         private string descripcion;
@@ -19,11 +19,10 @@ namespace SistemaEmpeños.MODELO.POJO
         private string estado;
 
         //Constructor
-        public Producto(int id, int tipo, double valor
+        public Producto( int tipo, double valor
             ,string descrip, string nom, double precioV
            ,string estado)
         {
-            this.IdProducto = id;
             this.IdTipoProducto = tipo;
             this.Valor = valor;
             this.Descripcion = descrip;
@@ -32,8 +31,9 @@ namespace SistemaEmpeños.MODELO.POJO
             this.Estado = estado;
         }
 
+        public Producto() { }
+
         //Get y set
-        public int IdProducto { get => idProducto; set => idProducto = value; }
         public int IdTipoProducto { get => idTipoProducto; set => idTipoProducto = value; }
         public double Valor { get => valor; set => valor = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
@@ -42,26 +42,27 @@ namespace SistemaEmpeños.MODELO.POJO
         public string Estado { get => estado; set => estado = value; }
 
         //Metodos
-        private bool Insertar(Producto Datos)
+        public void Insertar(Producto Datos)
         {
             using (var coneccion = GetConnection())
             {
-                using (var comando = new SqlCommand)
+                coneccion.Open();
+                using (var comando = new SqlCommand())
                 {
+                    comando.Connection = coneccion;
+
                     comando.CommandText="insertar_producto";
                     comando.CommandType = CommandType.StoredProcedure;
 
-                    comando.Parameters.AddWithValue("@id_tipo_producto",Datos.IdProducto);
-                    comando.Parameters.AddWithValue("@estado",Datos.Estado);
+                    comando.Parameters.AddWithValue("@id_tipo_producto",Datos.IdTipoProducto);
                     comando.Parameters.AddWithValue("@valor",Datos.Valor);
                     comando.Parameters.AddWithValue("@descripcion",Datos.Descripcion);
                     comando.Parameters.AddWithValue("@nombre",Datos.Nombre);
-                    comando.Parameters.AddWithValue("@precio_venta",Datos.PrecioVenta);
+                    comando.Parameters.AddWithValue("@precio_venta",0);
 
                     comando.ExecuteNonQuery();
                     comando.Parameters.Clear();
-
-                    return true;
+                   
 
                 }//Segundo fin using 
             }//Primer fin using
@@ -86,11 +87,31 @@ namespace SistemaEmpeños.MODELO.POJO
             return res;
         }
 
-        private DataTable Buscar(string dato) { }
 
-        private bool Actualizar(Producto Datos) { }
+        //Mostrar ID
+        public DataTable MostrarId(string Nombre, int tipo)
+        {
+            DataTable res = new DataTable();
 
-        private bool CambiarEstado(Producto Datos) { }
+            using (var coneccion = GetConnection())
+            {
+                coneccion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = coneccion;
+                    comando.CommandText = "sp_IdProducto";
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@Nombre", Nombre);
+                    comando.Parameters.AddWithValue("@tipo", tipo);
 
-    }
+                    SqlDataAdapter adp = new SqlDataAdapter(comando);
+                    adp.Fill(res);
+
+                    return res;
+                }
+            }
+
+
+        }
+      }
 }

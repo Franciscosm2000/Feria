@@ -1,7 +1,7 @@
 drop database PawnSystem
 go
 
-use PawnSystem
+create database PawnSystem
 go
 
 ---tablas
@@ -116,9 +116,6 @@ alter table Usuario
 add foreign key (Id_Cargo) 
 references Cargo(id_Cargo);
 
-alter table Detalle_Empeño 
-add foreign key (Id_Empleado) 
-references Empleado(id_Empleado);
 
 alter table Detalle_Empeño 
 add foreign key (Id_Empeño) 

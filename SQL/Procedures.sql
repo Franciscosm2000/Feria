@@ -7,9 +7,13 @@ CREATE PROCEDURE Insertar_Cliente_vendedor
 @p_apell varchar(50),
 @s_apell varchar(50), 
 @cedula varchar(50),
-@dir varchar(100)
+@dir varchar(100),
+@tel nvarchar(10),
+@correo varchar(50)
 AS
-	INSERT INTO Cliente_Vendedor VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir);
+	INSERT INTO Cliente_Vendedor VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@tel,@correo);
+
+	exec Insertar_Cliente_vendedor 'as','asdf','asdf','asdf','741','sdaf42','74','asdf'
 	SELECT * FROM Cliente_Vendedor;
 
 CREATE PROCEDURE Insertar_Cliente_Comprador
@@ -31,23 +35,13 @@ create procedure insertar_Empleado
 @cedula varchar(50),
 @dir varchar(100),
 @telefono nvarchar(10),
-@correo varchar(50),
-@estado varchar(50)
+@correo varchar(50)
 AS
-	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,@estado);
+	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,'HABILITADO');
 	SELECT * FROM Empleado;
 
-create procedure insertar_Telefono_Cliente_Vendedor
-@telefono nvarchar(50)
-as
-	insert into Telefono values(@telefono);
-	select * from Telefono;
-	
-create procedure insertar_correo_Cliente_Vendedor
-@correo varchar(50)
-as
-	insert into Correo values(@correo);
-	select * from Correo;
+EXEC insertar_Empleado 's','s','sdf','fdsa','001520','adfas','asdfas','s'
+
 
 create procedure insertar_pago_empeño
 @id_empeño integer,
@@ -61,13 +55,12 @@ as
 
 create procedure insertar_producto
 @id_tipo_producto integer,
-@estado varchar(50),
 @valor money,
 @descripcion varchar(100),
 @nombre varchar(50),
 @precio_venta money
 as
-	insert into Producto values(@id_tipo_producto,@estado,@valor,@descripcion,@nombre,@precio_venta);
+	insert into Producto values(@id_tipo_producto,@valor,@descripcion,@nombre,@precio_venta,'HABILITADO');
 	select * from Producto;
 
 create procedure insertar_tipo_producto
@@ -100,49 +93,81 @@ insert into  Detalle_Venta values
 
 go
 
---Empeno 
-create proc sp_add_Empeno
-@id_cliente_vendedor int,
-@idEmpeno int,
-@idProducto int,
+---Cliente
+create proc sp_IdClienteVendedor
+@cedula varchar(30)
+as
+	select c.Id_Cliente_Vendedor from Cliente_Vendedor c where c.Cédula = @cedula
+go
+
+create proc sp_IdProducto
+@Nombre varchar(30),
+@tipo int
+as
+	select c.Id_Producto from Producto c where c.Nombre = @Nombre and c.Id_Tipo_Producto = @tipo
+go
+
+select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor = 9 and e.Id_Empleado = 9 
+
+--Empeno ---------------------
+alter proc sp_add_Empeno
+@idClient int,
 @idEmpleado int,
+@idP int,
 @Monto_Empeno money,
 @Cuota int,
 @frecuencia int,
-@FechaVencimiento date,
-@Estado varchar(50)
+@FechaVencimiento date
 as
-	insert into Empeño values
-	(@id_cliente_vendedor,@idEmpleado,GETDATE());
 
+	insert into Empeño values (@idClient,@idEmpleado,GETDATE()); 
+	select *from Empeño
 	declare @idE int
-	set @idE = (select *from Empeño e where e.Id_Cliente_Vendedor 
-	=@id_cliente_vendedor and e.Id_Empleado = @idEmpleado);
+
+	set @idE = (select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor = @idClient and e.Id_Empleado = @idEmpleado )		
+	select @idE
 
 	insert into Detalle_Empeño values
-	(@idE,@idProducto,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
-	,@Estado);
+	(@idE,@idP,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
+	,'HABILITADO');
+	
 go
+select * FROM Empeño
+SELECT *FROM Producto
+SELECT *FROM Detalle_Empeño
+Select *from Cliente_Vendedor
+select *from Producto
+delete Empeño
+
+exec sp_add_Empeno 0,2,6,200,100,2,'2019-12-11'
+
+----------------------------------------
+select *from Empleado
+
+
+select *from Detalle_Empeño
 
 --------------Fran
 --HACER PROCESO DE TABLA DE AMORTIZACION
 ---Mostrar todo
-create proc sp_mostrarCliente_Empleado
+alter proc sp_mostrarCliente_Empleado
 @tipo varchar(20)
 as
 	if @tipo = 'Cliente'
 	begin
-	select Primer_Nombre, Segundo_Nombre,
-	Primer_Apellido, Segundo_Apellido,Cédula,
-	Dirrección from Cliente_Vendedor
+	select CONCAT(Primer_Nombre,' ',Segundo_Nombre) as Nombres,
+	CONCAT(Primer_Apellido,' ',Segundo_Apellido) as Apellido,Cédula,
+	Dirrección, Telefono, Correo from Cliente_Vendedor
 	end
 	else if @tipo = 'Empleado'
 	begin
-	select Primer_Nombre, Segundo_Nombre,
-	Primer_Apellido, Segundo_Apellido,Cédula,
-	Dirrección, Telefono, Correo from Empleado
+	select Id_Empleado ,CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
+	Concat(Primer_Apellido,' ',Segundo_Apellido)as Apellidos,Cédula,
+	Dirrección, Telefono, Correo, Estado from Empleado
 	end
 
+	exec sp_mostrarCliente_Empleado 'Cliente'
+	
 --Proceso para buscar un cliente comprador
 create proc sp_buscarClienteComprador
 @Dato varchar(100)
@@ -170,7 +195,7 @@ Telefono, Correo
 
 
 --Proceso para buscar un cliente o un empleado
-create proc sp_buscarCliente_Empleado
+alter proc sp_buscarCliente_Empleado
 @Tipo varchar(20),
 @Dato varchar(100)
 as
@@ -210,11 +235,12 @@ if @Tipo = 'Empleado'
 		  c.Cédula like @Dato + '%';
 	end
 
+	exec sp_buscarCliente_Empleado 'Empleado','fra'
 
 --proceso para actualizar datos del cliente y del empleado
 CREATE proc Actualizar_Cliente_Empleado
 @tipo varchar(20),
-@id_registro int, @p_nom varchar(15),
+@id_Cedula int, @p_nom varchar(15),
 @s_nom varchar(15), @p_apell varchar(15),
 @s_apell varchar(15), @dir varchar(70),
 @tel nvarchar(10), @corr varchar(50)
@@ -223,8 +249,9 @@ as
 	begin
 	UPDATE Cliente_Vendedor SET Primer_Nombre = @p_nom,
 	Segundo_Nombre = @s_nom, Primer_Apellido = @p_apell,
-	Segundo_Apellido= @s_apell, Dirrección = @dir
-	WHERE Id_Cliente_Vendedor =@id_registro;
+	Segundo_Apellido= @s_apell, Dirrección = @dir,
+	Telefono = @tel , Correo = @corr
+	WHERE Cédula = @id_Cedula;
 	end
 
 	If @tipo ='Empleado'
@@ -232,8 +259,8 @@ as
 	UPDATE Empleado SET Primer_Nombre = @p_nom,
 	Segundo_Nombre = @s_nom, Primer_Apellido = @p_apell,
 	Segundo_Apellido= @s_apell, Dirrección = @dir,
-	Telefono =@numero , Correo = @correo
-	WHERE Id_Empleado =@id_registro;
+	Telefono =@tel , Correo = @corr
+	WHERE Cédula = @id_Cedula;
 	end
 -----Usuario
 create proc sp_addUsuario
@@ -245,7 +272,7 @@ as
 	insert into Usuario values 
 	(@id_cargo,@Nombre,@pass,@correo);
 go
-
+exec sp_addUsuario'fran','123',0,'dsa'
 
 create proc sp_BuscarUsuario
 @Usuario varchar(50),
@@ -278,7 +305,7 @@ as
 	(@Cargo);
 go
 
-
+exec sp_addCargo 'Administrador'
  ----Producto
 
  create proc BuscarProducto
@@ -298,6 +325,121 @@ go
 inner join Tipo_Producto  tp
  on p.Id_Tipo_Producto = tp.Id_Tipo_Producto 
 
+ SELECT *FROM EMPLEADO
+
+ --Mostrar Tipo Producto
+ create proc MostrarTipoProducto
+ as
+ select tp.Id_Tipo_Producto, tp.Tipo from 
+  Tipo_Producto tp 
+
+
+  exec MostrarTipoProducto
+
+ create proc sp_Cambiar_EstadoEmpleado
+ @Cedula nvarchar(16)
+ as
+ if((SELECT estado FROM Empleado WHERE Cédula=@Cedula)='HABILITADO')
+	BEGIN
+		UPDATE Empleado SET estado='DESHABILITADO' WHERE Cédula=@Cedula;
+	END
+	ELSE
+	BEGIN
+		UPDATE Empleado SET estado='HABILITADO' WHERE Cédula=@Cedula;
+	END
+
+
+	---Empeño
+
+alter proc sp_BuscarEmpeño
+@dato varchar(50)
+as
+	select 
+	e.Id_Empeño as [Contrato], e.Fecha,de.Estado,
+	Concat(em.Primer_Nombre,' ',em.Primer_Apellido)
+	as [Nombre Empleado],
+	CONCAT (cv.Primer_Nombre,' ', cv.Primer_Apellido) 
+	as [Nombre Cliente],
+	de.Fecha_Vencimiento,
+	de.Monto_Empeño,
+	de.Cuota,
+	de.Frecuencia
+	from Empeño e
+	inner join Detalle_Empeño de 
+	on e.Id_Empeño = de.Id_Empeño
+	inner join Empleado em 
+	on e.Id_Empleado = em.Id_Empleado
+	inner join Cliente_Vendedor cv
+	on e.Id_Cliente_Vendedor = cv.Id_Cliente_Vendedor
+	where 
+	e.Id_Empeño like @dato + '%' or
+	e.Fecha like @dato + '%' or
+	de.Estado like @dato + '%' or
+	em.Primer_Nombre like @dato + '%' or
+	em.Segundo_Nombre like @dato + '%' or
+	em.Primer_Apellido like @dato + '%' or
+	em.Segundo_Apellido like @dato + '%' or
+	cv.Primer_Nombre like @dato + '%' or
+	cv.Segundo_Nombre like @dato + '%' or
+	cv.Primer_Apellido like @dato + '%' or
+	cv.Segundo_Apellido like @dato + '%'
+
+	----------------------------------------------------------
+select CONCAT(YEAR(GETDATE()),'/',MONTH(GETDATE()),'/',day(GETDATE()))
+
+select GETDATE()
+----------------------------------------------------------------
+exec sp_BuscarEmpeño 'xavier'
+	-----Tabla amortizacion
+	
+create PROCEDURE sp_prestamo 
+@meses INT, @tasa float, @principal money, @email VARCHAR(50)
+as
+
+	IF OBJECT_ID('tempdb.dbo.#Prestamo') IS NOT NULL
+	BEGIN
+		DROP TABLE #prestamo;
+	END
+
+	CREATE TABLE #prestamo(
+	id_prestamo INTEGER PRIMARY KEY IDENTITY(0,1),
+	meses INTEGER NOT NULL, 
+	fecha DATE NOT NULL,
+	principal MONEY NOT NULL,
+	cuota MONEY,
+	interes FLOAT,
+	aporte_capital FLOAT,
+	saldo_final FLOAT);
+
+	DECLARE @cuota MONEY, @interes FLOAT, @capital MONEY, @saldofinal MONEY
+	SET @cuota=(((@principal*(@tasa/12))/(1-POWER(1+(@tasa/12),-@meses))))
+
+	--llenada de tabla temporal
+	DECLARE @cont int, @fecha DATE;
+	SET @cont=1;
+	SET @fecha=GETDATE();
+	WHILE(@cont<=@meses)
+	BEGIN
+		IF(@cont=1)
+		BEGIN
+			SET @saldofinal=@principal;
+		END
+		ELSE
+		BEGIN
+			SET @principal=@saldofinal;
+		END
+		SET @interes=@saldofinal*(@tasa/12);
+		SET @capital=@cuota-@interes;
+		SET @saldofinal=@saldofinal-@capital;
+		INSERT INTO #prestamo VALUES(@cont, @fecha, @principal, @cuota, @interes, @capital, @saldofinal);
+		SET @fecha=DATEADD(MONTH, 1, @fecha); 
+		SET @cont=@cont+1;
+	END
+	select *from #prestamo
+	
+	exec sp_prestamo 12, 0.15, 100000, 'jf_mejiar547@live.com';
 
 
 
+
+	select *from Producto

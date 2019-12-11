@@ -10,28 +10,28 @@ namespace SistemaEmpeños.MODELO.Clases
 {
     class Cliente_Empeñador : Persona
     {
-        private int id;
         private string cedula;
         private string direccion;
-
-        public Cliente_Empeñador(int id, string nom1, string nom2,
+        
+        public Cliente_Empeñador(string nom1, string nom2,
             string apell1, string apell2,
            string tel, string correo, string cedula, string direccion)
         {
-            this.Id = id;
             this.Nombre1 = nom1;
             this.Nombre2 = nom2;
             this.Apellido1 = apell1;
             this.Apellido2 = apell2;
             this.Tel = tel;
             this.Cedula = cedula;
+            this.Correo = correo;
             this.Direccion = direccion;
         }
 
+        public Cliente_Empeñador() { }
+
         public string Cedula { get => cedula; set => cedula = value; }
         public string Direccion { get => direccion; set => direccion = value; }
-        public int Id { get => id; set => id = value; }
-
+        
         //Metodos
 
         public bool ActualizarDatos(Cliente_Empeñador datos)
@@ -40,17 +40,19 @@ namespace SistemaEmpeños.MODELO.Clases
             {
                 using (var coneccion = GetConnection())
                 {
+                    coneccion.Open();
                     using (var comando = new SqlCommand())
                     {
+                        comando.Connection = coneccion;
                         comando.CommandText = "Actualizar_Cliente_Empleado";
                         comando.CommandType = CommandType.StoredProcedure;
 
                         comando.Parameters.AddWithValue("@tipo", "Cliente");
-                        comando.Parameters.AddWithValue("@id_registro", datos.Id);
                         comando.Parameters.AddWithValue("@p_nom", datos.Nombre1);
                         comando.Parameters.AddWithValue("@s_nom", datos.Nombre2);
                         comando.Parameters.AddWithValue("@p_apell", datos.Apellido1);
                         comando.Parameters.AddWithValue("@s_apell", datos.Apellido2);
+                        comando.Parameters.AddWithValue("@id_cedula",datos.Cedula);
                         comando.Parameters.AddWithValue("@dir", datos.Direccion);
                         comando.Parameters.AddWithValue("@tel", datos.Tel);
                         comando.Parameters.AddWithValue("@corr", datos.Correo);
@@ -75,8 +77,10 @@ namespace SistemaEmpeños.MODELO.Clases
             {
                 using (var coneccion = GetConnection())
                 {
+                    coneccion.Open();
                     using (var comando = new SqlCommand())
                     {
+                        comando.Connection = coneccion;
                         comando.CommandText = "sp_buscarCliente_Empleado";
                         comando.CommandType = CommandType.StoredProcedure;
                         comando.Parameters.AddWithValue("@Tipo", "Cliente");
@@ -93,17 +97,16 @@ namespace SistemaEmpeños.MODELO.Clases
 
 
         //insertar datos
-        public bool InsertarDatos(Cliente_Empeñador datos)
+        public void InsertarDatos(Cliente_Empeñador datos)
         {
-            try
-            {
-
                 using (var conection = GetConnection())
                 {
                     conection.Open();
 
                     using (var comando = new SqlCommand())
                     {
+                    comando.Connection = conection;
+
                         comando.CommandText = "Insertar_Cliente_vendedor";
                         comando.CommandType = CommandType.StoredProcedure;
 
@@ -119,12 +122,9 @@ namespace SistemaEmpeños.MODELO.Clases
 
                         comando.Parameters.Clear();
 
-                        return true;
+                     
                     }//fin segundo using
                 } //fin primer using
-
-            }
-            catch (Exception e) { return false;}
         }
 
 
@@ -136,15 +136,18 @@ namespace SistemaEmpeños.MODELO.Clases
             {
                 using (var coneccion = GetConnection())
                 {
+                    coneccion.Open();
                     using (var comando = new SqlCommand())
                     {
+                        comando.Connection = coneccion;
                         comando.CommandText = "sp_mostrarCliente_Empleado";
                         comando.CommandType = CommandType.StoredProcedure;
                         comando.Parameters.AddWithValue("@tipo", "Cliente");
-                        comando.Parameters.Clear();
-
+                        
                         SqlDataAdapter adp = new SqlDataAdapter(comando);
                         adp.Fill(res);
+
+                        comando.ExecuteNonQuery();
 
                     }//fin segundo using
                 }//fin primer using
@@ -152,6 +155,28 @@ namespace SistemaEmpeños.MODELO.Clases
 
             return res;
         }
-        
+
+        //Mostrar ID
+        public  DataTable MostrarId(string cedula)
+        {
+            DataTable res = new DataTable();
+
+            using (var coneccion = GetConnection())
+            {
+                coneccion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = coneccion;
+                    comando.CommandText = "sp_IdClienteVendedor";
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@cedula", cedula);
+
+                    SqlDataAdapter adp = new SqlDataAdapter(comando);
+                    adp.Fill(res);
+
+                    return res;
+                }
+            }
+        }
     }
 }

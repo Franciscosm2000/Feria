@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaEmpeños.CONTROLADOR;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -126,10 +127,7 @@ namespace SistemaEmpeños
         private void FrmEmployees_Load(object sender, EventArgs e)
         {
             txtFilter.Focus();
-            for (int i = 0; i < 10; i++)
-            {
-                dataSet1.Tables["Empleado"].Rows.Add(i, "000-000000-0000A", "000000-0", "Foo", "Bar", "MALE", "foo bar, foo bar, bar foo", "88888888", 50000);
-            }
+            dgvEmpleados.DataSource = ControlEmpleado.MostrarDatos();
         }
         // End FrmEmployees Handlers
 
@@ -157,6 +155,85 @@ namespace SistemaEmpeños
             btnSave.ForeColor = Color.FromArgb(34, 30, 31);
             btnSave.Image = SistemaEmpeños.Properties.Resources.icon_save;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            if (txtNombre.Text == null || txtNombre.Text.Equals("") || txtApellido.Text == null || txtApellido.Text.Equals(""))
+            {
+                MessageBox.Show("Error"); 
+            }
+            else
+            {
+                ControlEmpleado con = new ControlEmpleado();
+
+                string[] nombre = (txtNombre.Text).Split(' ');
+                string[] apellido = (txtApellido.Text).Split(' ');
+
+                con.AddEmpleado(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+            }
+
+
+        }
+        //Editar
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txtCedula.Enabled = true;
+
+            string[] nombre = (txtNombre.Text).Split(' ');
+            string[] apellido = (txtApellido.Text).Split(' ');
+
+            ControlEmpleado cont = new ControlEmpleado();
+            cont.ActualizarDatos(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+
+            dgvEmpleados.DataSource = null;
+            dgvEmpleados.DataSource = ControlEmpleado.MostrarDatos();
+
+        }
+        //PARA MANDAR LOS DATOS A SUS CAMPOS PARA LA EDICION
+        private void MandarDatosCampos(object sender, DataGridViewCellEventArgs e)
+        {
+            int poc = 0; //
+            txtCedula.Enabled = false;
+            poc = dgvEmpleados.CurrentRow.Index; //octenemos la posicion\
+            txtCedula.Text = dgvEmpleados[3, poc].Value.ToString();
+            txtNombre.Text = dgvEmpleados[1, poc].Value.ToString();
+            txtApellido.Text = dgvEmpleados[2, poc].Value.ToString();
+            txtDireccion.Text = dgvEmpleados[4, poc].Value.ToString();
+            txtTel.Text = dgvEmpleados[5, poc].Value.ToString();
+            txtCorreo.Text = dgvEmpleados[6, poc].Value.ToString();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            FrmAccount f = new FrmAccount();
+            f.Show();
+        }
+        //Cambiar Estado
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ControlEmpleado c = new ControlEmpleado();
+            c.CambiarEstado(txtCedula.Text);
+            dgvEmpleados.DataSource = null;
+            dgvEmpleados.DataSource = ControlEmpleado.MostrarDatos();
+        }
+
+        private void BuscarEmpleado(object sender, KeyPressEventArgs e)
+        {
+            ControlEmpleado c = new ControlEmpleado();
+            dgvEmpleados.DataSource = null;
+            dgvEmpleados.DataSource = c.buscarDatos(txtFilter.Text);
+        }
+
+
+
+
+
         // End Miscellaneous Methods
     }
 }
