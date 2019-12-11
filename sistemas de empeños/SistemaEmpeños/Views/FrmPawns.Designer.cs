@@ -45,39 +45,39 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label28 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtNcontrato = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
-            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
+            this.dateInicio = new System.Windows.Forms.DateTimePicker();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
+            this.dateRango2 = new System.Windows.Forms.DateTimePicker();
+            this.dateRango1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label30 = new System.Windows.Forms.Label();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.cmbEmpleado = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.dgvPawns = new System.Windows.Forms.DataGridView();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.txtEmpleado = new System.Windows.Forms.MaskedTextBox();
+            this.textContratoId = new System.Windows.Forms.TextBox();
+            this.dateVencimiento = new System.Windows.Forms.DateTimePicker();
+            this.cmbFrecuencia = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.txtCuota = new System.Windows.Forms.NumericUpDown();
             this.label26 = new System.Windows.Forms.Label();
-            this.maskedTextBox6 = new System.Windows.Forms.MaskedTextBox();
+            this.txtMonto = new System.Windows.Forms.MaskedTextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.dateInicioId = new System.Windows.Forms.DateTimePicker();
             this.label23 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -153,7 +153,7 @@
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPawns)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCuota)).BeginInit();
             this.newPawnTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -312,7 +312,7 @@
             this.pawnsTabPage.Controls.Add(this.splitContainer3);
             this.pawnsTabPage.Location = new System.Drawing.Point(4, 5);
             this.pawnsTabPage.Name = "pawnsTabPage";
-            this.pawnsTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pawnsTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.pawnsTabPage.Size = new System.Drawing.Size(849, 375);
             this.pawnsTabPage.TabIndex = 0;
             // 
@@ -334,18 +334,18 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(249)))), ((int)(((byte)(254)))));
-            this.splitContainer3.Panel2.Controls.Add(this.textBox9);
-            this.splitContainer3.Panel2.Controls.Add(this.dateTimePicker4);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox5);
+            this.splitContainer3.Panel2.Controls.Add(this.txtEmpleado);
+            this.splitContainer3.Panel2.Controls.Add(this.textContratoId);
+            this.splitContainer3.Panel2.Controls.Add(this.dateVencimiento);
+            this.splitContainer3.Panel2.Controls.Add(this.cmbFrecuencia);
             this.splitContainer3.Panel2.Controls.Add(this.label27);
-            this.splitContainer3.Panel2.Controls.Add(this.numericUpDown2);
+            this.splitContainer3.Panel2.Controls.Add(this.txtCuota);
             this.splitContainer3.Panel2.Controls.Add(this.label26);
-            this.splitContainer3.Panel2.Controls.Add(this.maskedTextBox6);
+            this.splitContainer3.Panel2.Controls.Add(this.txtMonto);
             this.splitContainer3.Panel2.Controls.Add(this.label25);
             this.splitContainer3.Panel2.Controls.Add(this.label22);
             this.splitContainer3.Panel2.Controls.Add(this.label24);
-            this.splitContainer3.Panel2.Controls.Add(this.dateTimePicker3);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox4);
+            this.splitContainer3.Panel2.Controls.Add(this.dateInicioId);
             this.splitContainer3.Panel2.Controls.Add(this.label23);
             this.splitContainer3.Panel2.Controls.Add(this.label21);
             this.splitContainer3.Panel2.Controls.Add(this.label20);
@@ -379,7 +379,7 @@
             // panel8
             // 
             this.panel8.Controls.Add(this.label28);
-            this.panel8.Controls.Add(this.textBox10);
+            this.panel8.Controls.Add(this.txtNcontrato);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 3);
             this.panel8.Name = "panel8";
@@ -396,19 +396,20 @@
             this.label28.TabIndex = 9;
             this.label28.Text = "No. Contrato:";
             // 
-            // textBox10
+            // txtNcontrato
             // 
-            this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNcontrato.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox10.Location = new System.Drawing.Point(88, 3);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(94, 21);
-            this.textBox10.TabIndex = 8;
+            this.txtNcontrato.Location = new System.Drawing.Point(88, 3);
+            this.txtNcontrato.Name = "txtNcontrato";
+            this.txtNcontrato.Size = new System.Drawing.Size(94, 21);
+            this.txtNcontrato.TabIndex = 8;
+            this.txtNcontrato.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNcontrato_KeyPress);
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.label31);
-            this.panel9.Controls.Add(this.dateTimePicker5);
+            this.panel9.Controls.Add(this.dateInicio);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(194, 3);
             this.panel9.Name = "panel9";
@@ -425,19 +426,20 @@
             this.label31.TabIndex = 10;
             this.label31.Text = "Fecha:";
             // 
-            // dateTimePicker5
+            // dateInicio
             // 
-            this.dateTimePicker5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateInicio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker5.Location = new System.Drawing.Point(57, 3);
-            this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(125, 21);
-            this.dateTimePicker5.TabIndex = 9;
+            this.dateInicio.Location = new System.Drawing.Point(57, 3);
+            this.dateInicio.Name = "dateInicio";
+            this.dateInicio.Size = new System.Drawing.Size(125, 21);
+            this.dateInicio.TabIndex = 9;
+            this.dateInicio.ValueChanged += new System.EventHandler(this.dateInicio_ValueChanged);
             // 
             // panel10
             // 
             this.panel10.Controls.Add(this.label32);
-            this.panel10.Controls.Add(this.comboBox8);
+            this.panel10.Controls.Add(this.cmbEstado);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(385, 3);
             this.panel10.Name = "panel10";
@@ -454,23 +456,24 @@
             this.label32.TabIndex = 1;
             this.label32.Text = "Estado:";
             // 
-            // comboBox8
+            // cmbEstado
             // 
-            this.comboBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(57, 3);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(125, 24);
-            this.comboBox8.TabIndex = 0;
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(57, 3);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(125, 24);
+            this.cmbEstado.TabIndex = 0;
+            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
             // 
             // panel14
             // 
             this.tableLayoutPanel3.SetColumnSpan(this.panel14, 3);
             this.panel14.Controls.Add(this.label34);
             this.panel14.Controls.Add(this.label33);
-            this.panel14.Controls.Add(this.dateTimePicker7);
-            this.panel14.Controls.Add(this.dateTimePicker6);
+            this.panel14.Controls.Add(this.dateRango2);
+            this.panel14.Controls.Add(this.dateRango1);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(3, 73);
             this.panel14.Name = "panel14";
@@ -497,19 +500,22 @@
             this.label33.TabIndex = 13;
             this.label33.Text = "Vence desde:";
             // 
-            // dateTimePicker7
+            // dateRango2
             // 
-            this.dateTimePicker7.Location = new System.Drawing.Point(384, 4);
-            this.dateTimePicker7.Name = "dateTimePicker7";
-            this.dateTimePicker7.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker7.TabIndex = 12;
+            this.dateRango2.Location = new System.Drawing.Point(384, 4);
+            this.dateRango2.Name = "dateRango2";
+            this.dateRango2.Size = new System.Drawing.Size(200, 21);
+            this.dateRango2.TabIndex = 12;
+            this.dateRango2.ValueChanged += new System.EventHandler(this.dateRango2_ValueChanged);
             // 
-            // dateTimePicker6
+            // dateRango1
             // 
-            this.dateTimePicker6.Location = new System.Drawing.Point(99, 4);
-            this.dateTimePicker6.Name = "dateTimePicker6";
-            this.dateTimePicker6.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker6.TabIndex = 11;
+            this.dateRango1.Location = new System.Drawing.Point(99, 4);
+            this.dateRango1.Name = "dateRango1";
+            this.dateRango1.Size = new System.Drawing.Size(200, 21);
+            this.dateRango1.TabIndex = 11;
+            this.dateRango1.Value = new System.DateTime(2019, 12, 10, 20, 22, 13, 0);
+            this.dateRango1.ValueChanged += new System.EventHandler(this.dateRango1_ValueChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -531,7 +537,7 @@
             // panel11
             // 
             this.panel11.Controls.Add(this.label30);
-            this.panel11.Controls.Add(this.comboBox7);
+            this.panel11.Controls.Add(this.cmbCliente);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(289, 3);
             this.panel11.Name = "panel11";
@@ -548,20 +554,21 @@
             this.label30.TabIndex = 13;
             this.label30.Text = "Cliente:";
             // 
-            // comboBox7
+            // cmbCliente
             // 
-            this.comboBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(70, 3);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(208, 24);
-            this.comboBox7.TabIndex = 12;
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(70, 3);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(208, 24);
+            this.cmbCliente.TabIndex = 12;
+            this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
             // 
             // panel12
             // 
             this.panel12.Controls.Add(this.label29);
-            this.panel12.Controls.Add(this.comboBox6);
+            this.panel12.Controls.Add(this.cmbEmpleado);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(3, 3);
             this.panel12.Name = "panel12";
@@ -578,15 +585,16 @@
             this.label29.TabIndex = 11;
             this.label29.Text = "Empleado:";
             // 
-            // comboBox6
+            // cmbEmpleado
             // 
-            this.comboBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(85, 3);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(192, 24);
-            this.comboBox6.TabIndex = 10;
+            this.cmbEmpleado.FormattingEnabled = true;
+            this.cmbEmpleado.Location = new System.Drawing.Point(85, 3);
+            this.cmbEmpleado.Name = "cmbEmpleado";
+            this.cmbEmpleado.Size = new System.Drawing.Size(192, 24);
+            this.cmbEmpleado.TabIndex = 10;
+            this.cmbEmpleado.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleado_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -595,7 +603,7 @@
             this.label19.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label19.Location = new System.Drawing.Point(0, 0);
             this.label19.Name = "label19";
-            this.label19.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label19.Padding = new System.Windows.Forms.Padding(3);
             this.label19.Size = new System.Drawing.Size(579, 20);
             this.label19.TabIndex = 7;
             this.label19.Text = "Datos del cliente";
@@ -638,36 +646,46 @@
             this.dgvPawns.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPawns.Size = new System.Drawing.Size(541, 114);
             this.dgvPawns.TabIndex = 5;
+            this.dgvPawns.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MandarDatos);
             // 
-            // textBox9
+            // txtEmpleado
             // 
-            this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox9.Location = new System.Drawing.Point(161, 35);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(59, 21);
-            this.textBox9.TabIndex = 8;
+            this.txtEmpleado.Location = new System.Drawing.Point(160, 92);
+            this.txtEmpleado.Name = "txtEmpleado";
+            this.txtEmpleado.Size = new System.Drawing.Size(48, 21);
+            this.txtEmpleado.TabIndex = 9;
             // 
-            // dateTimePicker4
+            // textContratoId
             // 
-            this.dateTimePicker4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textContratoId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker4.Location = new System.Drawing.Point(161, 203);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(60, 21);
-            this.dateTimePicker4.TabIndex = 1;
+            this.textContratoId.BackColor = System.Drawing.SystemColors.Control;
+            this.textContratoId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textContratoId.Location = new System.Drawing.Point(161, 35);
+            this.textContratoId.Name = "textContratoId";
+            this.textContratoId.Size = new System.Drawing.Size(47, 21);
+            this.textContratoId.TabIndex = 8;
             // 
-            // comboBox5
+            // dateVencimiento
             // 
-            this.comboBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateVencimiento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(161, 173);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(60, 24);
-            this.comboBox5.TabIndex = 1;
+            this.dateVencimiento.Location = new System.Drawing.Point(161, 203);
+            this.dateVencimiento.Name = "dateVencimiento";
+            this.dateVencimiento.Size = new System.Drawing.Size(48, 21);
+            this.dateVencimiento.TabIndex = 1;
+            // 
+            // cmbFrecuencia
+            // 
+            this.cmbFrecuencia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbFrecuencia.FormattingEnabled = true;
+            this.cmbFrecuencia.Location = new System.Drawing.Point(161, 173);
+            this.cmbFrecuencia.Name = "cmbFrecuencia";
+            this.cmbFrecuencia.Size = new System.Drawing.Size(48, 24);
+            this.cmbFrecuencia.TabIndex = 1;
             // 
             // label27
             // 
@@ -679,14 +697,14 @@
             this.label27.TabIndex = 0;
             this.label27.Text = "Fecha de vencimiento:";
             // 
-            // numericUpDown2
+            // txtCuota
             // 
-            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtCuota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown2.Location = new System.Drawing.Point(161, 146);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(59, 21);
-            this.numericUpDown2.TabIndex = 1;
+            this.txtCuota.Location = new System.Drawing.Point(161, 146);
+            this.txtCuota.Name = "txtCuota";
+            this.txtCuota.Size = new System.Drawing.Size(47, 21);
+            this.txtCuota.TabIndex = 1;
             // 
             // label26
             // 
@@ -698,14 +716,14 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Frecuencia:";
             // 
-            // maskedTextBox6
+            // txtMonto
             // 
-            this.maskedTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtMonto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox6.Location = new System.Drawing.Point(161, 119);
-            this.maskedTextBox6.Name = "maskedTextBox6";
-            this.maskedTextBox6.Size = new System.Drawing.Size(60, 21);
-            this.maskedTextBox6.TabIndex = 1;
+            this.txtMonto.Location = new System.Drawing.Point(161, 119);
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(48, 21);
+            this.txtMonto.TabIndex = 1;
             // 
             // label25
             // 
@@ -737,24 +755,14 @@
             this.label24.TabIndex = 0;
             this.label24.Text = "Monto:";
             // 
-            // dateTimePicker3
+            // dateInicioId
             // 
-            this.dateTimePicker3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateInicioId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker3.Location = new System.Drawing.Point(161, 62);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(60, 21);
-            this.dateTimePicker3.TabIndex = 1;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(161, 89);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(60, 24);
-            this.comboBox4.TabIndex = 1;
+            this.dateInicioId.Location = new System.Drawing.Point(161, 62);
+            this.dateInicioId.Name = "dateInicioId";
+            this.dateInicioId.Size = new System.Drawing.Size(48, 21);
+            this.dateInicioId.TabIndex = 1;
             // 
             // label23
             // 
@@ -783,7 +791,7 @@
             this.label20.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label20.Location = new System.Drawing.Point(0, 0);
             this.label20.Name = "label20";
-            this.label20.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label20.Padding = new System.Windows.Forms.Padding(3);
             this.label20.Size = new System.Drawing.Size(256, 20);
             this.label20.TabIndex = 7;
             this.label20.Text = "Detalle del contrato";
@@ -794,7 +802,7 @@
             this.newPawnTabPage.Controls.Add(this.splitContainer1);
             this.newPawnTabPage.Location = new System.Drawing.Point(4, 5);
             this.newPawnTabPage.Name = "newPawnTabPage";
-            this.newPawnTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.newPawnTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.newPawnTabPage.Size = new System.Drawing.Size(849, 375);
             this.newPawnTabPage.TabIndex = 1;
             // 
@@ -1105,7 +1113,7 @@
             this.lblPawnInfoHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblPawnInfoHeader.Location = new System.Drawing.Point(0, 3);
             this.lblPawnInfoHeader.Name = "lblPawnInfoHeader";
-            this.lblPawnInfoHeader.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblPawnInfoHeader.Padding = new System.Windows.Forms.Padding(3);
             this.lblPawnInfoHeader.Size = new System.Drawing.Size(843, 20);
             this.lblPawnInfoHeader.TabIndex = 6;
             this.lblPawnInfoHeader.Text = "Detalles del contrato";
@@ -1306,7 +1314,7 @@
             this.lblCustomerInfoHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblCustomerInfoHeader.Location = new System.Drawing.Point(0, 0);
             this.lblCustomerInfoHeader.Name = "lblCustomerInfoHeader";
-            this.lblCustomerInfoHeader.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblCustomerInfoHeader.Padding = new System.Windows.Forms.Padding(3);
             this.lblCustomerInfoHeader.Size = new System.Drawing.Size(435, 20);
             this.lblCustomerInfoHeader.TabIndex = 6;
             this.lblCustomerInfoHeader.Text = "Datos del cliente";
@@ -1317,7 +1325,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedTextBox2.Location = new System.Drawing.Point(104, 168);
             this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(241, 21);
+            this.maskedTextBox2.Size = new System.Drawing.Size(229, 21);
             this.maskedTextBox2.TabIndex = 14;
             // 
             // textBox3
@@ -1327,7 +1335,7 @@
             this.textBox3.Location = new System.Drawing.Point(104, 93);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(241, 69);
+            this.textBox3.Size = new System.Drawing.Size(229, 69);
             this.textBox3.TabIndex = 13;
             // 
             // comboBox3
@@ -1337,7 +1345,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(104, 63);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(241, 24);
+            this.comboBox3.Size = new System.Drawing.Size(229, 24);
             this.comboBox3.TabIndex = 12;
             // 
             // textBox2
@@ -1346,7 +1354,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(104, 36);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(241, 21);
+            this.textBox2.Size = new System.Drawing.Size(229, 21);
             this.textBox2.TabIndex = 11;
             // 
             // label14
@@ -1392,7 +1400,7 @@
             this.lblProductInfoHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblProductInfoHeader.Location = new System.Drawing.Point(0, 0);
             this.lblProductInfoHeader.Name = "lblProductInfoHeader";
-            this.lblProductInfoHeader.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblProductInfoHeader.Padding = new System.Windows.Forms.Padding(3);
             this.lblProductInfoHeader.Size = new System.Drawing.Size(400, 20);
             this.lblProductInfoHeader.TabIndex = 6;
             this.lblProductInfoHeader.Text = "Detalles del producto";
@@ -1402,7 +1410,7 @@
             this.payTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(249)))), ((int)(((byte)(254)))));
             this.payTabPage.Location = new System.Drawing.Point(4, 5);
             this.payTabPage.Name = "payTabPage";
-            this.payTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.payTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.payTabPage.Size = new System.Drawing.Size(849, 375);
             this.payTabPage.TabIndex = 2;
             // 
@@ -1444,7 +1452,7 @@
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPawns)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCuota)).EndInit();
             this.newPawnTabPage.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1543,32 +1551,31 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.TextBox textContratoId;
+        private System.Windows.Forms.DateTimePicker dateVencimiento;
+        private System.Windows.Forms.ComboBox cmbFrecuencia;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown txtCuota;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox6;
+        private System.Windows.Forms.MaskedTextBox txtMonto;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.DateTimePicker dateInicioId;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker6;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker5;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.ComboBox cmbCliente;
+        private System.Windows.Forms.DateTimePicker dateRango1;
+        private System.Windows.Forms.ComboBox cmbEmpleado;
+        private System.Windows.Forms.DateTimePicker dateInicio;
+        private System.Windows.Forms.TextBox txtNcontrato;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.DateTimePicker dateTimePicker7;
+        private System.Windows.Forms.DateTimePicker dateRango2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
@@ -1579,5 +1586,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.MaskedTextBox txtEmpleado;
     }
 }

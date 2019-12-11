@@ -348,3 +348,43 @@ inner join Tipo_Producto  tp
 	BEGIN
 		UPDATE Empleado SET estado='HABILITADO' WHERE Cédula=@Cedula;
 	END
+
+
+	---Empeño
+
+create proc sp_BuscarEmpeño
+@dato varchar(50)
+as
+	select 
+	e.Id_Empeño as [Contrato], e.Fecha,de.Estado,
+	Concat(em.Primer_Nombre,' ',em.Primer_Apellido)
+	as [Nombre Empleado],
+	CONCAT (cv.Primer_Nombre,' ', cv.Primer_Apellido) 
+	as [Nombre Cliente],
+	de.Fecha_Vencimiento,
+	de.Monto_Empeño,
+	de.Cuota,
+	de.Frecuencia
+	from Empeño e
+	inner join Detalle_Empeño de 
+	on e.Id_Empeño = de.Id_Detalle_Empeño
+	inner join Empleado em 
+	on e.Id_Empleado = em.Id_Empleado
+	inner join Cliente_Vendedor cv
+	on e.Id_Cliente_Vendedor = cv.Id_Cliente_Vendedor 
+	where 
+	e.Id_Empeño like @dato + '%' or
+	e.Fecha like @dato + '%' or
+	de.Estado like @dato + '%' or
+	em.Primer_Nombre like @dato + '%' or
+	em.Segundo_Nombre like @dato + '%' or
+	em.Primer_Apellido like @dato + '%' or
+	em.Segundo_Apellido like @dato + '%' or
+	cv.Primer_Nombre like @dato + '%' or
+	cv.Segundo_Nombre like @dato + '%' or
+	cv.Primer_Apellido like @dato + '%' or
+	cv.Segundo_Apellido like @dato + '%'
+
+select CONCAT(YEAR(GETDATE()),'/',MONTH(GETDATE()),'/',day(GETDATE()))
+
+select GETDATE()

@@ -49,12 +49,15 @@
   <ItemGroup>
     <Compile Include="CONTROLADOR\ControladorCliente.cs" />
     <Compile Include="CONTROLADOR\ControlEmpleado.cs" />
+    <Compile Include="CONTROLADOR\EmpenoFran.cs" />
     <Compile Include="CONTROLADOR\SoporteEmail.cs" />
     <Compile Include="CONTROLADOR\UserModelo.cs" />
+    <Compile Include="CONTROLADOR\Validaciones.cs" />
     <Compile Include="MODELO\AccesoDatoUsuario.cs" />
     <Compile Include="CONTROLADOR\Cargos.cs" />
     <Compile Include="MODELO\POJO\Cliente_Comprador.cs" />
     <Compile Include="MODELO\POJO\Cliente_Empeñador.cs" />
+    <Compile Include="MODELO\POJO\EmpeñoFran.cs" />
     <Compile Include="MODELO\POJO\Empleado.cs" />
     <Compile Include="MODELO\POJO\Persona.cs" />
     <Compile Include="MODELO\ConnectionToSQL.cs" />

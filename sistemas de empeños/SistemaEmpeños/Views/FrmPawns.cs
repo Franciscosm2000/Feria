@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaEmpeños.CONTROLADOR;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,9 +17,15 @@ namespace SistemaEmpeños
         private bool newPawnTabActive = false;
         private bool payTabActive = false;
         private bool btnSaveMouseEntered;
+
+        Validaciones v = new Validaciones();
         public FrmPawns()
         {
             InitializeComponent();
+            v.SOLONUMEROS(txtNcontrato);
+            //Inicializacion de cmbESTADO
+            cmbEstado.Items.Add("HABILITADDO");
+            cmbEstado.Items.Add("DESHABILITADDO");
         }
 
         // Start btnClose Handlers
@@ -221,6 +228,86 @@ namespace SistemaEmpeños
             btnInvoice.ForeColor = Color.FromArgb(34, 30, 31);
             btnInvoice.Image = SistemaEmpeños.Properties.Resources.icon_invoice;
         }
+        //Evento para buscar por contrato 
+        private void txtNcontrato_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MostrarTabla(txtNcontrato.Text);
+        }
+        //Evento cuando se mueve el focco
+
         // End Miscellaneous Methods
+
+       //PARA MOSTRAR DATOS DE LA TABLA SEGUN EL CAMPO
+        public void MostrarTabla(string a)
+        {
+            dgvPawns.DataSource = null;
+            dgvPawns.DataSource = EmpenoFran.mostrar(a);
+        }
+
+        //MANDAR DATOS
+        private void MandarDatos(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPawns[0, 0].Value.ToString().Equals("") || dgvPawns[0, 0].Value.ToString() == null) { }
+            else
+            {
+                int poc = 0; //
+                txtNcontrato.Enabled = false;
+                poc = dgvPawns.CurrentRow.Index; //octenemos la posicion\
+                txtNcontrato.Text = dgvPawns[0, poc].Value.ToString();
+                dateInicio.Text = dgvPawns[1, poc].Value.ToString();
+                txtEmpleado.Text = dgvPawns[2, poc].Value.ToString();
+                txtMonto.Text = dgvPawns[6, poc].Value.ToString();
+                txtCuota.Text = dgvPawns[7, poc].Value.ToString();
+                cmbFrecuencia.Text = dgvPawns[8, poc].Value.ToString();
+                dateVencimiento.Text = dgvPawns[5, poc].Value.ToString();
+            }
+        }
+
+        private void dateInicio_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarTabla(dateInicio.Text.ToString());
+        }
+
+        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MostrarTabla(cmbEstado.SelectedText);
+        }
+
+        private void cmbEmpleado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MostrarTabla(cmbEmpleado.SelectedText);
+        }
+
+        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MostrarTabla(cmbCliente.SelectedText);
+        }
+
+        //PENDIENTE
+        private void dateRango1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateRango1.Value.Date > DateTime.Now.Date)
+            {
+                dateRango1.Value = DateTime.Now.Date;
+                MessageBox.Show("La fecha es mayor a la actual");
+            }
+            else
+            {
+                //string FECHA = string.Format( ,"yyyy-MM-dd");
+                MessageBox.Show(dateRango1.Value.Date.ToString());
+            }
+           // MostrarTabla(dateRango1.Text);
+        }
+
+        private void dateRango2_ValueChanged(object sender, EventArgs e)
+        {
+            // MostrarTabla(dateRango2.Text);
+            if (dateRango2.Value.Date < DateTime.Now.Date)
+            {
+                dateRango2.Value = DateTime.Now.Date;
+                MessageBox.Show("La fecha es menor a la actual");
+            }
+            MessageBox.Show(dateRango2.Text);
+        }
     }
 }
