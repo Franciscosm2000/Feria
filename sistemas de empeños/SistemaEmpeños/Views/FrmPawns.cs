@@ -23,12 +23,11 @@ namespace SistemaEmpeños
         {
             InitializeComponent();
             v.SOLONUMEROS(txtNcontrato);
+            v.SOLONUMEROS(txtFrecuencia);
+            v.SOLONUMEROS(txtMonto_);
             //Inicializacion de cmbESTADO
             cmbEstado.Items.Add("HABILITADDO");
             cmbEstado.Items.Add("DESHABILITADDO");
-            //INICIALIZACION DE CMBFRECUENCIA
-            cmbFrecuencia_.Items.Add("Mensual");
-            cmbFrecuencia_.Items.Add("Quinsenal");
         }
 
         // Start btnClose Handlers
@@ -258,7 +257,7 @@ namespace SistemaEmpeños
                 poc = dgvPawns.CurrentRow.Index; //octenemos la posicion\
                 txtNcontrato.Text = dgvPawns[0, poc].Value.ToString();
                 dateInicio.Text = dgvPawns[1, poc].Value.ToString();
-                txtEmpleado.Text = dgvPawns[2, poc].Value.ToString();
+                //txtEmpleado.Text = dgvPawns[3, poc].Value.ToString();
                 txtMonto.Text = dgvPawns[6, poc].Value.ToString();
                 txtCuota.Text = dgvPawns[7, poc].Value.ToString();
                 cmbFrecuencia.Text = dgvPawns[8, poc].Value.ToString();
@@ -337,18 +336,31 @@ namespace SistemaEmpeños
 
         private void btnInvoice_Click(object sender, EventArgs e)
         {
+
+            ControladorCliente co = new ControladorCliente();
+            co.InsertarDatos(txtNombre.Text, txtNombre2.Text, txtApellido.Text, txtApellido2.Text, txttel.Text, txtCorreo_.Text,
+            txtCedula.Text, txtDireccion.Text);
+
+            ControlProducto cp = new ControlProducto();
+            cp.InsertarDatos(Convert.ToInt32(idTipo.SelectedValue), txtValor.Text
+           ,txtDescripcion.Text,txtNombreProducto.Text);
+
+            ControlEmpeno c = new ControlEmpeno();
+            c.InsertarDatos(Convert.ToInt32(idEmpleado.SelectedValue), Convert.ToDouble(txtMonto_.Text)
+           , Convert.ToInt32(txtCuota.Text),txtFrecuencia.Text, dateVencimiento_.Value.Date, txtCedula.Text,Convert.ToInt32(idTipo.SelectedValue),txtNombreProducto.Text);
+
             
-                ControlEmpeno c = new ControlEmpeno();
-            c.InsertarDatos(txtNombre.Text, txtNombre2.Text, txtApellido.Text, txtApellido2.Text, txttel.Text, txtCorreo_.Text, 
-                txtCedula.Text, txtDireccion.Text,Convert.ToInt32( idTipo), Convert.ToDouble(txtValor.Text), txtDescripcion.Text,
-                txtNombreProducto.Text, Convert.ToDouble (txtValor), cmbEstado.Text, Convert.ToInt32(idEmpleado.Text), Convert.ToDouble(txtMonto_.Text)
-                , Convert.ToInt32(txtCuota.Text), cmbFrecuencia_.Text, dateVencimiento_.Value.Date);
+
         }
+
+        //falta validar
 
         private void button1_Click(object sender, EventArgs e)
         {
+            cuota.Text = "";
+
             DataTable dt = new DataTable();
-            dt = ControlEmpeno.mostrarTablaAmortizacion("2", txtMonto_.Text);
+            dt = ControlEmpeno.mostrarTablaAmortizacion(txtFrecuencia.Text, txtMonto_.Text);
 
             var cell = dt.Rows[0][4];
             cuota.Text = cell.ToString() ;

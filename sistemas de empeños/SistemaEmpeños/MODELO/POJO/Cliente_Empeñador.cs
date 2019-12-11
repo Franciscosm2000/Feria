@@ -12,7 +12,7 @@ namespace SistemaEmpeños.MODELO.Clases
     {
         private string cedula;
         private string direccion;
-
+        
         public Cliente_Empeñador(string nom1, string nom2,
             string apell1, string apell2,
            string tel, string correo, string cedula, string direccion)
@@ -23,6 +23,7 @@ namespace SistemaEmpeños.MODELO.Clases
             this.Apellido2 = apell2;
             this.Tel = tel;
             this.Cedula = cedula;
+            this.Correo = correo;
             this.Direccion = direccion;
         }
 
@@ -151,6 +152,28 @@ namespace SistemaEmpeños.MODELO.Clases
 
             return res;
         }
-        
+
+        //Mostrar ID
+        public  DataTable MostrarId(string cedula)
+        {
+            DataTable res = new DataTable();
+
+            using (var coneccion = GetConnection())
+            {
+                coneccion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = coneccion;
+                    comando.CommandText = "sp_IdClienteVendedor";
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@cedula", cedula);
+
+                    SqlDataAdapter adp = new SqlDataAdapter(comando);
+                    adp.Fill(res);
+
+                    return res;
+                }
+            }
+        }
     }
 }

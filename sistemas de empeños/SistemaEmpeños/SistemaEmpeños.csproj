@@ -50,6 +50,7 @@
     <Compile Include="CONTROLADOR\ControladorCliente.cs" />
     <Compile Include="CONTROLADOR\ControlEmpleado.cs" />
     <Compile Include="CONTROLADOR\ControlEmpeno.cs" />
+    <Compile Include="CONTROLADOR\ControlProducto.cs" />
     <Compile Include="CONTROLADOR\ControlTipoProducto.cs" />
     <Compile Include="CONTROLADOR\SoporteEmail.cs" />
     <Compile Include="CONTROLADOR\UserModelo.cs" />

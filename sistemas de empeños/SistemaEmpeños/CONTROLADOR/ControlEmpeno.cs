@@ -17,23 +17,14 @@ namespace SistemaEmpeños.CONTROLADOR
             return e.BuscarDato(dato);
         }
 
-        public void InsertarDatos
-            (string nom1, string nom2,
-            string apell1, string apell2,
-           string tel, string correo, string cedula, string direccion,
-           //Producto
-           int tipo, double valor
-            , string descrip, string nom, double precioV
-           , string estado,
-           //Empeno
-           int id_empleado, double monto_empeno, int cuota, string frecuencia, DateTime fechavencimiento
+        public void InsertarDatos( int id_empleado, double monto_empeno, int cuota, string frecuencia, 
+            DateTime fechavencimiento, string ced, int idp, string NombreProducto
             )
         {
-            Cliente_Empeñador c = new Cliente_Empeñador(nom1, nom2, apell1, apell2, tel, correo, cedula, direccion);
+            
             Empeño e = new Empeño(id_empleado, monto_empeno, cuota, frecuencia, fechavencimiento);
-            Producto p = new Producto(tipo,valor, descrip, nom, precioV, estado);
-
-            e.Insertar_Empeño(e,p,c);
+            
+            e.Insertar_Empeño(e,ced,idp,NombreProducto);
         }
 
         public static DataTable mostrarTablaAmortizacion(string meses,string principal)

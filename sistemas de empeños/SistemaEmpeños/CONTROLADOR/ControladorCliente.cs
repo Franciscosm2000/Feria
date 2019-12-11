@@ -37,7 +37,7 @@ namespace SistemaEmpeños.CONTROLADOR
             string apell1, string apell2,
            string tel, string correo, string cedula, string direccion)
         {
-            Cliente_Empeñador cli = new Cliente_Empeñador();
+            Cliente_Empeñador cli = new Cliente_Empeñador(nom1,nom2,apell1,apell2,tel,correo,cedula,direccion);
             cli.InsertarDatos(cli);
         }
       

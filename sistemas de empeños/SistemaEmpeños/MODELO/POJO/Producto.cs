@@ -42,26 +42,27 @@ namespace SistemaEmpeños.MODELO.POJO
         public string Estado { get => estado; set => estado = value; }
 
         //Metodos
-        private bool Insertar(Producto Datos)
+        public void Insertar(Producto Datos)
         {
             using (var coneccion = GetConnection())
             {
+                coneccion.Open();
                 using (var comando = new SqlCommand())
                 {
+                    comando.Connection = coneccion;
+
                     comando.CommandText="insertar_producto";
                     comando.CommandType = CommandType.StoredProcedure;
 
                     comando.Parameters.AddWithValue("@id_tipo_producto",Datos.IdTipoProducto);
-                    comando.Parameters.AddWithValue("@estado",Datos.Estado);
                     comando.Parameters.AddWithValue("@valor",Datos.Valor);
                     comando.Parameters.AddWithValue("@descripcion",Datos.Descripcion);
                     comando.Parameters.AddWithValue("@nombre",Datos.Nombre);
-                    comando.Parameters.AddWithValue("@precio_venta",Datos.PrecioVenta);
+                    comando.Parameters.AddWithValue("@precio_venta",0);
 
                     comando.ExecuteNonQuery();
                     comando.Parameters.Clear();
-
-                    return true;
+                   
 
                 }//Segundo fin using 
             }//Primer fin using
@@ -86,7 +87,31 @@ namespace SistemaEmpeños.MODELO.POJO
             return res;
         }
 
-     
 
-    }
+        //Mostrar ID
+        public DataTable MostrarId(string Nombre, int tipo)
+        {
+            DataTable res = new DataTable();
+
+            using (var coneccion = GetConnection())
+            {
+                coneccion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = coneccion;
+                    comando.CommandText = "sp_IdProducto";
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@Nombre", Nombre);
+                    comando.Parameters.AddWithValue("@tipo", tipo);
+
+                    SqlDataAdapter adp = new SqlDataAdapter(comando);
+                    adp.Fill(res);
+
+                    return res;
+                }
+            }
+
+
+        }
+      }
 }

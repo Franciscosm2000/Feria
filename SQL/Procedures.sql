@@ -7,9 +7,13 @@ CREATE PROCEDURE Insertar_Cliente_vendedor
 @p_apell varchar(50),
 @s_apell varchar(50), 
 @cedula varchar(50),
-@dir varchar(100)
+@dir varchar(100),
+@tel nvarchar(10),
+@correo varchar(50)
 AS
-	INSERT INTO Cliente_Vendedor VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir);
+	INSERT INTO Cliente_Vendedor VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@tel,@correo);
+
+	exec Insertar_Cliente_vendedor 'as','asdf','asdf','asdf','741','sdaf42','74','asdf'
 	SELECT * FROM Cliente_Vendedor;
 
 CREATE PROCEDURE Insertar_Cliente_Comprador
@@ -37,17 +41,7 @@ AS
 	SELECT * FROM Empleado;
 
 EXEC insertar_Empleado 's','s','sdf','fdsa','001520','adfas','asdfas','s'
-create procedure insertar_Telefono_Cliente_Vendedor
-@telefono nvarchar(50)
-as
-	insert into Telefono values(@telefono);
-	select * from Telefono;
-	
-create procedure insertar_correo_Cliente_Vendedor
-@correo varchar(50)
-as
-	insert into Correo values(@correo);
-	select * from Correo;
+
 
 create procedure insertar_pago_empeño
 @id_empeño integer,
@@ -61,13 +55,12 @@ as
 
 create procedure insertar_producto
 @id_tipo_producto integer,
-@estado varchar(50),
 @valor money,
 @descripcion varchar(100),
 @nombre varchar(50),
 @precio_venta money
 as
-	insert into Producto values(@id_tipo_producto,@estado,@valor,@descripcion,@nombre,@precio_venta);
+	insert into Producto values(@id_tipo_producto,@valor,@descripcion,@nombre,@precio_venta,'HABILITADO');
 	select * from Producto;
 
 create procedure insertar_tipo_producto
@@ -100,60 +93,58 @@ insert into  Detalle_Venta values
 
 go
 
---Empeno 
-create proc sp_add_Empeno
-@idEmpeno int,
+---Cliente
+create proc sp_IdClienteVendedor
+@cedula varchar(30)
+as
+	select c.Id_Cliente_Vendedor from Cliente_Vendedor c where c.Cédula = @cedula
+go
+
+create proc sp_IdProducto
+@Nombre varchar(30),
+@tipo int
+as
+	select c.Id_Producto from Producto c where c.Nombre = @Nombre and c.Id_Tipo_Producto = @tipo
+go
+
+select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor = 9 and e.Id_Empleado = 9 
+
+--Empeno ---------------------
+alter proc sp_add_Empeno
+@idClient int,
 @idEmpleado int,
+@idP int,
 @Monto_Empeno money,
 @Cuota int,
 @frecuencia int,
-@FechaVencimiento date,
---Producto
-@id_tipo_producto integer,
-@valor money,
-@descripcion varchar(100),
-@nombre varchar(50),
-@precio_venta money,
---Cliente
-@p_nom varchar(50),
-@s_nom varchar(50), 
-@p_apell varchar(50),
-@s_apell varchar(50), 
-@cedula varchar(50),
-@dir varchar(100),
-@tel nvarchar(10),
-@corr varchar(50)
-
+@FechaVencimiento date
 as
 
-	INSERT INTO Cliente_Vendedor VALUES
-	(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@tel,@corr);
-	
-	declare @idClient int
-	set @idClient = (select cv.Id_Cliente_Vendedor from Cliente_Vendedor cv where cv.Cédula = @cedula);
-
-	insert into Empeño values
-	(@idClient,@idEmpleado,GETDATE());
-
-	
-	insert into Producto values
-	(@id_tipo_producto,@valor,@descripcion,@nombre,@precio_venta,'HABILITADO');
-		
-		--Id empeno	
+	insert into Empeño values (@idClient,@idEmpleado,GETDATE()); 
+	select *from Empeño
 	declare @idE int
-	set @idE = (select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor 
-	=@idClient and e.Id_Empleado = @idEmpleado);
-	
-		--Idproducto
-	declare @idP int
-	set @idP = (select Id_Producto from Producto p where p.Nombre = @nombre and p.Id_Tipo_Producto = @id_tipo_producto
-	and p.Descripcion = @descripcion);
 
-		
-	insert into Detalle_Empeño values
+	set @idE = (select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor = @idClient and e.Id_Empleado = @idEmpleado )		
+	select @idE
+
+	/*insert into Detalle_Empeño values
 	(@idE,@idP,@Monto_Empeno,@Cuota,@frecuencia,@FechaVencimiento
-	,'HABILITADO');
+	,'HABILITADO');*/
+	
 go
+select * FROM Empeño
+SELECT *FROM Producto
+SELECT *FROM Detalle_Empeño
+Select *from Cliente_Vendedor
+select *from Producto
+delete Empeño
+
+exec sp_add_Empeno 0,2,6,200,100,2,'2019-12-11'
+
+----------------------------------------
+select *from Empleado
+
+
 select *from Detalle_Empeño
 
 --------------Fran
@@ -360,7 +351,7 @@ inner join Tipo_Producto  tp
 
 	---Empeño
 
-create proc sp_BuscarEmpeño
+alter proc sp_BuscarEmpeño
 @dato varchar(50)
 as
 	select 
@@ -375,11 +366,11 @@ as
 	de.Frecuencia
 	from Empeño e
 	inner join Detalle_Empeño de 
-	on e.Id_Empeño = de.Id_Detalle_Empeño
+	on e.Id_Empeño = de.Id_Empeño
 	inner join Empleado em 
 	on e.Id_Empleado = em.Id_Empleado
 	inner join Cliente_Vendedor cv
-	on e.Id_Cliente_Vendedor = cv.Id_Cliente_Vendedor 
+	on e.Id_Cliente_Vendedor = cv.Id_Cliente_Vendedor
 	where 
 	e.Id_Empeño like @dato + '%' or
 	e.Fecha like @dato + '%' or
@@ -393,11 +384,12 @@ as
 	cv.Primer_Apellido like @dato + '%' or
 	cv.Segundo_Apellido like @dato + '%'
 
+	----------------------------------------------------------
 select CONCAT(YEAR(GETDATE()),'/',MONTH(GETDATE()),'/',day(GETDATE()))
 
 select GETDATE()
-
-
+----------------------------------------------------------------
+exec sp_BuscarEmpeño 'fran'
 	-----Tabla amortizacion
 	
 create PROCEDURE sp_prestamo 
@@ -445,4 +437,9 @@ as
 	END
 	select *from #prestamo
 	
-	exec sp_prestamo 2, 0.15, 8000, 'jf_mejiar547@live.com';
+	exec sp_prestamo 12, 0.15, 100000, 'jf_mejiar547@live.com';
+
+
+
+
+	select *from Producto

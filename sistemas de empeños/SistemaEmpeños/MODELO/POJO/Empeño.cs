@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SistemaEmpeños.MODELO.POJO
 {
@@ -45,8 +46,13 @@ namespace SistemaEmpeños.MODELO.POJO
 
         //insertar los datos de empeño
 
-        public void Insertar_Empeño(Empeño datos, Producto pro, Cliente_Empeñador clie_emp)
+        public void Insertar_Empeño(Empeño datos,string ced, int idpr,string nom)
         {
+            Cliente_Empeñador cliente = new Cliente_Empeñador();
+            int id = Convert.ToInt32(cliente.MostrarId(ced).Rows[0][0]);
+
+            Producto pro = new Producto();
+            int idP = Convert.ToInt32(pro.MostrarId(nom,idpr).Rows[0][0]);
 
             using (var connecion = GetConnection())
             {
@@ -55,32 +61,20 @@ namespace SistemaEmpeños.MODELO.POJO
                 {
                     comando.Connection = connecion;
 
-                    comando.CommandText = "sp_add_Empeno_total";
+                    comando.CommandText = "sp_add_Empeno";
                     comando.CommandType = CommandType.StoredProcedure;
 
                     //empeño
+                    comando.Parameters.AddWithValue("@idClient",id);
                     comando.Parameters.AddWithValue("@idEmpleado", datos.Id_empleado);
+                    comando.Parameters.AddWithValue("@idP",idP );
                     comando.Parameters.AddWithValue("@Monto_Empeno", datos.Monto_empeno);
                     comando.Parameters.AddWithValue("Cuota", datos.Cuota);
                     comando.Parameters.AddWithValue("@frecuencia", datos.Frecuencia);
                     comando.Parameters.AddWithValue("@FechaVencimiento", datos.Fechavencimiento);
 
-                    //producto
-                    comando.Parameters.AddWithValue("@id_tipo_producto", pro.IdTipoProducto);
-                    comando.Parameters.AddWithValue("@valor", pro.Valor);
-                    comando.Parameters.AddWithValue("@descripcion", pro.Descripcion);
-                    comando.Parameters.AddWithValue("@nombre", pro.Nombre);
-                    comando.Parameters.AddWithValue("@precio_venta", pro.PrecioVenta);
-
-                    //cliente
-                    comando.Parameters.AddWithValue("@p_nom", clie_emp.Nombre1);
-                    comando.Parameters.AddWithValue("@s_nom", clie_emp.Nombre2);
-                    comando.Parameters.AddWithValue("@p_apell", clie_emp.Apellido1);
-                    comando.Parameters.AddWithValue("@s_apell", clie_emp.Apellido2);
-                    comando.Parameters.AddWithValue("@cedula", clie_emp.Cedula);
-                    comando.Parameters.AddWithValue("@dir", clie_emp.Direccion);
-                    comando.Parameters.AddWithValue("@tel", clie_emp.Tel);
-                    comando.Parameters.AddWithValue("@corr", clie_emp.Correo);
+                    MessageBox.Show(id.ToString()+" "+id.ToString());
+                   // comando.ExecuteNonQuery();
 
                     comando.Parameters.Clear();
                 }
@@ -103,6 +97,7 @@ namespace SistemaEmpeños.MODELO.POJO
                     comando.CommandText = "sp_BuscarEmpeño";
                     comando.CommandType = CommandType.StoredProcedure;
                     comando.Parameters.AddWithValue("@dato", dato);
+                    comando.ExecuteNonQuery();
                     SqlDataAdapter leer = new SqlDataAdapter(comando);
                     leer.Fill(res);
                     comando.Parameters.Clear();
