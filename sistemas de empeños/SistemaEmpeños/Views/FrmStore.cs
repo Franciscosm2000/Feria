@@ -235,5 +235,20 @@ namespace SistemaEmpeños
             txtDescripcion.Text = dgvProducto[1, index].Value.ToString();
             txtValor.Text = dgvProducto[3, index].Value.ToString();
         }
+
+        private void TxtFilter_TextChanged(object sender, EventArgs e)
+        {
+            dgvProducto.DataSource = null;
+            dgvProducto.DataSource = ControlProducto.buscardato(txtFilter.Text);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            ControlProducto cp = new ControlProducto();
+            cp.ActualizarProductos(txtNombreProducto.Text, txtDescripcion.Text, Convert.ToDouble(txtValor.Text));
+
+            dgvProducto.DataSource = null;
+            dgvProducto.DataSource = ControlProducto.MostarDatos();
+        }
     }
 }

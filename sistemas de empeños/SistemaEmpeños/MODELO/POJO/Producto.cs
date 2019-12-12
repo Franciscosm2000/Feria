@@ -67,6 +67,35 @@ namespace SistemaEmpeños.MODELO.POJO
                 }//Segundo fin using 
             }//Primer fin using
         }
+        public bool ActualizarDatos(Producto datos)
+        {
+            try
+            {
+                using (var coneccion = GetConnection())
+                {
+                    coneccion.Open();
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.Connection = coneccion;
+                        comando.CommandText = "Actualizar_Producto";
+                        comando.CommandType = CommandType.StoredProcedure;
+
+                        comando.Parameters.AddWithValue("@nombre", datos.Nombre);
+                        comando.Parameters.AddWithValue("@descripcion", datos.Descripcion);
+                        comando.Parameters.AddWithValue("@valor", datos.Valor);
+                        comando.ExecuteNonQuery();
+
+                        comando.Parameters.Clear();
+
+                        return true;
+                    }//fin segundo using 
+                }//fin de primer using
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public DataTable Mostrar()
         {
@@ -88,6 +117,30 @@ namespace SistemaEmpeños.MODELO.POJO
             return res;
         }
 
+        public DataTable BuscarDatos(string datos)
+        {
+            DataTable res = new DataTable();
+            try
+            {
+                using (var coneccion = GetConnection())
+                {
+                    coneccion.Open();
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.Connection = coneccion;
+                        comando.CommandText = "BuscarProducto";
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.AddWithValue("@Dato", datos);
+                        SqlDataAdapter leer = new SqlDataAdapter(comando);
+                        leer.Fill(res);
+                        comando.Parameters.Clear();
+                    }//Termina 2do using
+                }//Termina primer using
+            }
+            catch (Exception e) { }
+
+            return res;
+        }
 
         //Mostrar ID
         public DataTable MostrarId(string Nombre, int tipo)
