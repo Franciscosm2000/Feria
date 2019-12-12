@@ -17,10 +17,28 @@ namespace SistemaEmpeños.CONTROLADOR
             p.Insertar(p);
         }
 
+        public void ActualizarProductos(string nombre, string descripcion,
+            double valor)
+        {
+            Producto p = new Producto {
+                Nombre = nombre,
+                Descripcion = descripcion,
+                Valor = valor
+            };
+            p.ActualizarDatos(p);
+
+        }
+
         public static DataTable MostarDatos()
         {
             Producto p = new Producto();
             return p.Mostrar();
+        }
+
+        public static DataTable buscardato(string dato)
+        {
+            Producto p = new Producto();
+            return p.BuscarDatos(dato);
         }
     }
 }

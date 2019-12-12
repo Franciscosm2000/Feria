@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSales));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.titleBar = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,6 +46,22 @@
             this.lblArticlesTab = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.articlesTabPage = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblPanel1Header = new System.Windows.Forms.Label();
+            this.dgvProducto = new System.Windows.Forms.DataGridView();
+            this.txtValor = new System.Windows.Forms.MaskedTextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.idTipo = new System.Windows.Forms.ComboBox();
+            this.txtNombreProducto = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnClean = new System.Windows.Forms.Button();
+            this.lblPanel2Header = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.salePointTabPage = new System.Windows.Forms.TabPage();
             this.detailsContainer = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -84,28 +100,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnInvoice = new System.Windows.Forms.Button();
             this.lblSaleDetailsHeader = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtFilter = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lblPanel1Header = new System.Windows.Forms.Label();
-            this.dgvProducto = new System.Windows.Forms.DataGridView();
-            this.btnClean = new System.Windows.Forms.Button();
-            this.lblPanel2Header = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.txtValor = new System.Windows.Forms.MaskedTextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.idTipo = new System.Windows.Forms.ComboBox();
-            this.txtNombreProducto = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.titleBar.SuspendLayout();
             this.mainContainer.SuspendLayout();
             this.tabsContainer.SuspendLayout();
             this.cartContainer.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.articlesTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             this.salePointTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.detailsContainer)).BeginInit();
             this.detailsContainer.Panel1.SuspendLayout();
@@ -118,11 +123,6 @@
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFacturedArticles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // titleBar
@@ -278,6 +278,261 @@
             this.articlesTabPage.Name = "articlesTabPage";
             this.articlesTabPage.Size = new System.Drawing.Size(876, 373);
             this.articlesTabPage.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(249)))), ((int)(((byte)(254)))));
+            this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.lblPanel1Header);
+            this.splitContainer1.Panel1.Controls.Add(this.dgvProducto);
+            this.splitContainer1.Panel1.Enter += new System.EventHandler(this.MainContainer_Panel1_Enter);
+            this.splitContainer1.Panel1.Leave += new System.EventHandler(this.MainContainer_Panel1_Leave);
+            this.splitContainer1.Panel1MinSize = 533;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(249)))), ((int)(((byte)(254)))));
+            this.splitContainer1.Panel2.Controls.Add(this.txtValor);
+            this.splitContainer1.Panel2.Controls.Add(this.txtDescripcion);
+            this.splitContainer1.Panel2.Controls.Add(this.idTipo);
+            this.splitContainer1.Panel2.Controls.Add(this.txtNombreProducto);
+            this.splitContainer1.Panel2.Controls.Add(this.label14);
+            this.splitContainer1.Panel2.Controls.Add(this.label15);
+            this.splitContainer1.Panel2.Controls.Add(this.label16);
+            this.splitContainer1.Panel2.Controls.Add(this.label17);
+            this.splitContainer1.Panel2.Controls.Add(this.btnClean);
+            this.splitContainer1.Panel2.Controls.Add(this.lblPanel2Header);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSave);
+            this.splitContainer1.Panel2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainer1.Panel2.Enter += new System.EventHandler(this.MainContainer_Panel2_Enter);
+            this.splitContainer1.Panel2.Leave += new System.EventHandler(this.MainContainer_Panel2_Leave);
+            this.splitContainer1.Panel2MinSize = 250;
+            this.splitContainer1.Size = new System.Drawing.Size(876, 373);
+            this.splitContainer1.SplitterDistance = 557;
+            this.splitContainer1.SplitterWidth = 8;
+            this.splitContainer1.TabIndex = 8;
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilter.Location = new System.Drawing.Point(20, 38);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(517, 22);
+            this.txtFilter.TabIndex = 0;
+            this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(20, 307);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 40);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "EDITAR";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // lblPanel1Header
+            // 
+            this.lblPanel1Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.lblPanel1Header.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblPanel1Header.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPanel1Header.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblPanel1Header.Location = new System.Drawing.Point(0, 0);
+            this.lblPanel1Header.Name = "lblPanel1Header";
+            this.lblPanel1Header.Padding = new System.Windows.Forms.Padding(3);
+            this.lblPanel1Header.Size = new System.Drawing.Size(557, 20);
+            this.lblPanel1Header.TabIndex = 1;
+            this.lblPanel1Header.Text = "Lista de productos";
+            // 
+            // dgvProducto
+            // 
+            this.dgvProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvProducto.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvProducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(197)))), ((int)(((byte)(8)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(197)))), ((int)(((byte)(8)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducto.EnableHeadersVisualStyles = false;
+            this.dgvProducto.Location = new System.Drawing.Point(20, 77);
+            this.dgvProducto.Name = "dgvProducto";
+            this.dgvProducto.ReadOnly = true;
+            this.dgvProducto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvProducto.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvProducto.Size = new System.Drawing.Size(517, 208);
+            this.dgvProducto.TabIndex = 3;
+            this.dgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellClick);
+            // 
+            // txtValor
+            // 
+            this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValor.Location = new System.Drawing.Point(113, 171);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(171, 21);
+            this.txtValor.TabIndex = 32;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescripcion.Location = new System.Drawing.Point(113, 96);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(171, 69);
+            this.txtDescripcion.TabIndex = 31;
+            // 
+            // idTipo
+            // 
+            this.idTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.idTipo.FormattingEnabled = true;
+            this.idTipo.Location = new System.Drawing.Point(113, 66);
+            this.idTipo.Name = "idTipo";
+            this.idTipo.Size = new System.Drawing.Size(171, 24);
+            this.idTipo.TabIndex = 30;
+            // 
+            // txtNombreProducto
+            // 
+            this.txtNombreProducto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNombreProducto.Location = new System.Drawing.Point(113, 39);
+            this.txtNombreProducto.Name = "txtNombreProducto";
+            this.txtNombreProducto.Size = new System.Drawing.Size(171, 21);
+            this.txtNombreProducto.TabIndex = 29;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(22, 174);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(38, 16);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Valor:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(22, 99);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(73, 16);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "Descripción:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(22, 69);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(33, 16);
+            this.label16.TabIndex = 26;
+            this.label16.Text = "Tipo:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(22, 42);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 16);
+            this.label17.TabIndex = 25;
+            this.label17.Text = "Nombre:";
+            // 
+            // btnClean
+            // 
+            this.btnClean.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.btnClean.FlatAppearance.BorderSize = 0;
+            this.btnClean.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
+            this.btnClean.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnClean.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClean.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClean.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClean.Image = ((System.Drawing.Image)(resources.GetObject("btnClean.Image")));
+            this.btnClean.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClean.Location = new System.Drawing.Point(20, 260);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Size = new System.Drawing.Size(264, 40);
+            this.btnClean.TabIndex = 24;
+            this.btnClean.Text = "LIMPIAR";
+            this.btnClean.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClean.UseVisualStyleBackColor = false;
+            // 
+            // lblPanel2Header
+            // 
+            this.lblPanel2Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.lblPanel2Header.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblPanel2Header.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPanel2Header.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblPanel2Header.Location = new System.Drawing.Point(0, 0);
+            this.lblPanel2Header.Name = "lblPanel2Header";
+            this.lblPanel2Header.Padding = new System.Windows.Forms.Padding(3);
+            this.lblPanel2Header.Size = new System.Drawing.Size(311, 20);
+            this.lblPanel2Header.TabIndex = 3;
+            this.lblPanel2Header.Text = "Datos del producto";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(20, 214);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(264, 40);
+            this.btnSave.TabIndex = 18;
+            this.btnSave.Text = "GUARDAR";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // salePointTabPage
             // 
@@ -596,7 +851,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedTextBox3.Location = new System.Drawing.Point(94, 182);
             this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(127, 21);
+            this.maskedTextBox3.Size = new System.Drawing.Size(123, 21);
             this.maskedTextBox3.TabIndex = 10;
             // 
             // label13
@@ -623,7 +878,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedTextBox2.Location = new System.Drawing.Point(94, 117);
             this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(127, 21);
+            this.maskedTextBox2.Size = new System.Drawing.Size(123, 21);
             this.maskedTextBox2.TabIndex = 9;
             // 
             // maskedTextBox1
@@ -632,7 +887,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedTextBox1.Location = new System.Drawing.Point(94, 90);
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(127, 21);
+            this.maskedTextBox1.Size = new System.Drawing.Size(123, 21);
             this.maskedTextBox1.TabIndex = 8;
             // 
             // label11
@@ -653,7 +908,7 @@
             this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(94, 209);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(127, 21);
+            this.textBox4.Size = new System.Drawing.Size(123, 21);
             this.textBox4.TabIndex = 9;
             // 
             // label5
@@ -674,7 +929,7 @@
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(94, 144);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(127, 21);
+            this.textBox3.Size = new System.Drawing.Size(123, 21);
             this.textBox3.TabIndex = 7;
             // 
             // textBox2
@@ -686,7 +941,7 @@
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(94, 63);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(127, 21);
+            this.textBox2.Size = new System.Drawing.Size(123, 21);
             this.textBox2.TabIndex = 6;
             // 
             // label4
@@ -716,7 +971,7 @@
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(94, 36);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(127, 21);
+            this.textBox1.Size = new System.Drawing.Size(123, 21);
             this.textBox1.TabIndex = 3;
             // 
             // label2
@@ -741,7 +996,7 @@
             this.btnInvoice.Image = global::SistemaEmpeños.Properties.Resources.icon_invoice;
             this.btnInvoice.Location = new System.Drawing.Point(20, 245);
             this.btnInvoice.Name = "btnInvoice";
-            this.btnInvoice.Size = new System.Drawing.Size(201, 40);
+            this.btnInvoice.Size = new System.Drawing.Size(197, 40);
             this.btnInvoice.TabIndex = 11;
             this.btnInvoice.Text = "FACTURAR";
             this.btnInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -766,259 +1021,6 @@
             this.lblSaleDetailsHeader.TabIndex = 0;
             this.lblSaleDetailsHeader.Text = "Detalles de la venta";
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(249)))), ((int)(((byte)(254)))));
-            this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.lblPanel1Header);
-            this.splitContainer1.Panel1.Controls.Add(this.dgvProducto);
-            this.splitContainer1.Panel1.Enter += new System.EventHandler(this.MainContainer_Panel1_Enter);
-            this.splitContainer1.Panel1.Leave += new System.EventHandler(this.MainContainer_Panel1_Leave);
-            this.splitContainer1.Panel1MinSize = 533;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(249)))), ((int)(((byte)(254)))));
-            this.splitContainer1.Panel2.Controls.Add(this.txtValor);
-            this.splitContainer1.Panel2.Controls.Add(this.txtDescripcion);
-            this.splitContainer1.Panel2.Controls.Add(this.idTipo);
-            this.splitContainer1.Panel2.Controls.Add(this.txtNombreProducto);
-            this.splitContainer1.Panel2.Controls.Add(this.label14);
-            this.splitContainer1.Panel2.Controls.Add(this.label15);
-            this.splitContainer1.Panel2.Controls.Add(this.label16);
-            this.splitContainer1.Panel2.Controls.Add(this.label17);
-            this.splitContainer1.Panel2.Controls.Add(this.btnClean);
-            this.splitContainer1.Panel2.Controls.Add(this.lblPanel2Header);
-            this.splitContainer1.Panel2.Controls.Add(this.btnSave);
-            this.splitContainer1.Panel2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer1.Panel2.Enter += new System.EventHandler(this.MainContainer_Panel2_Enter);
-            this.splitContainer1.Panel2.Leave += new System.EventHandler(this.MainContainer_Panel2_Leave);
-            this.splitContainer1.Panel2MinSize = 250;
-            this.splitContainer1.Size = new System.Drawing.Size(876, 373);
-            this.splitContainer1.SplitterDistance = 557;
-            this.splitContainer1.SplitterWidth = 8;
-            this.splitContainer1.TabIndex = 8;
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilter.Location = new System.Drawing.Point(20, 38);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(517, 22);
-            this.txtFilter.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(20, 307);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 40);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "EDITAR";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // lblPanel1Header
-            // 
-            this.lblPanel1Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.lblPanel1Header.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblPanel1Header.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPanel1Header.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPanel1Header.Location = new System.Drawing.Point(0, 0);
-            this.lblPanel1Header.Name = "lblPanel1Header";
-            this.lblPanel1Header.Padding = new System.Windows.Forms.Padding(3);
-            this.lblPanel1Header.Size = new System.Drawing.Size(557, 20);
-            this.lblPanel1Header.TabIndex = 1;
-            this.lblPanel1Header.Text = "Lista de productos";
-            // 
-            // dgvProducto
-            // 
-            this.dgvProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvProducto.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvProducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(197)))), ((int)(((byte)(8)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(197)))), ((int)(((byte)(8)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducto.EnableHeadersVisualStyles = false;
-            this.dgvProducto.Location = new System.Drawing.Point(20, 77);
-            this.dgvProducto.Name = "dgvProducto";
-            this.dgvProducto.ReadOnly = true;
-            this.dgvProducto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvProducto.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvProducto.Size = new System.Drawing.Size(517, 208);
-            this.dgvProducto.TabIndex = 3;
-            this.dgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellClick);
-            // 
-            // btnClean
-            // 
-            this.btnClean.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.btnClean.FlatAppearance.BorderSize = 0;
-            this.btnClean.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
-            this.btnClean.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnClean.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClean.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClean.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnClean.Image = ((System.Drawing.Image)(resources.GetObject("btnClean.Image")));
-            this.btnClean.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClean.Location = new System.Drawing.Point(20, 260);
-            this.btnClean.Name = "btnClean";
-            this.btnClean.Size = new System.Drawing.Size(268, 40);
-            this.btnClean.TabIndex = 24;
-            this.btnClean.Text = "LIMPIAR";
-            this.btnClean.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnClean.UseVisualStyleBackColor = false;
-            // 
-            // lblPanel2Header
-            // 
-            this.lblPanel2Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.lblPanel2Header.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblPanel2Header.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPanel2Header.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPanel2Header.Location = new System.Drawing.Point(0, 0);
-            this.lblPanel2Header.Name = "lblPanel2Header";
-            this.lblPanel2Header.Padding = new System.Windows.Forms.Padding(3);
-            this.lblPanel2Header.Size = new System.Drawing.Size(311, 20);
-            this.lblPanel2Header.TabIndex = 3;
-            this.lblPanel2Header.Text = "Datos del producto";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
-            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(30)))), ((int)(((byte)(31)))));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(20, 214);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(268, 40);
-            this.btnSave.TabIndex = 18;
-            this.btnSave.Text = "GUARDAR";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // txtValor
-            // 
-            this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValor.Location = new System.Drawing.Point(113, 171);
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(175, 21);
-            this.txtValor.TabIndex = 32;
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcion.Location = new System.Drawing.Point(113, 96);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(175, 69);
-            this.txtDescripcion.TabIndex = 31;
-            // 
-            // idTipo
-            // 
-            this.idTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.idTipo.FormattingEnabled = true;
-            this.idTipo.Location = new System.Drawing.Point(113, 66);
-            this.idTipo.Name = "idTipo";
-            this.idTipo.Size = new System.Drawing.Size(175, 24);
-            this.idTipo.TabIndex = 30;
-            // 
-            // txtNombreProducto
-            // 
-            this.txtNombreProducto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombreProducto.Location = new System.Drawing.Point(113, 39);
-            this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(175, 21);
-            this.txtNombreProducto.TabIndex = 29;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(22, 174);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(38, 16);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Valor:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(22, 99);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 16);
-            this.label15.TabIndex = 27;
-            this.label15.Text = "Descripción:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(22, 69);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(33, 16);
-            this.label16.TabIndex = 26;
-            this.label16.Text = "Tipo:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(22, 42);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 16);
-            this.label17.TabIndex = 25;
-            this.label17.Text = "Nombre:";
-            // 
             // FrmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1037,6 +1039,13 @@
             this.cartContainer.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.articlesTabPage.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).EndInit();
             this.salePointTabPage.ResumeLayout(false);
             this.detailsContainer.Panel1.ResumeLayout(false);
             this.detailsContainer.Panel2.ResumeLayout(false);
@@ -1052,13 +1061,6 @@
             this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFacturedArticles)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).EndInit();
             this.ResumeLayout(false);
 
         }
