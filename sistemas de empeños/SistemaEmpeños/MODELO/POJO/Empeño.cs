@@ -74,8 +74,6 @@ namespace SistemaEmpeños.MODELO.POJO
                     comando.Parameters.AddWithValue("Cuota", datos.Cuota);
                     comando.Parameters.AddWithValue("@frecuencia", datos.Frecuencia);
                     comando.Parameters.AddWithValue("@FechaVencimiento", datos.Fechavencimiento);
-
-                    MessageBox.Show(id.ToString()+" "+id.ToString());
                     comando.ExecuteNonQuery();
 
                     comando.Parameters.Clear();
@@ -108,7 +106,7 @@ namespace SistemaEmpeños.MODELO.POJO
                 }
             }//Primer fin usign
         }
-
+        //TABLA DE AMORTIZACION
         public DataTable GenerarTablaAmortizacion(int mes, double principal)
         {
             DataTable res = new DataTable();
@@ -135,5 +133,6 @@ namespace SistemaEmpeños.MODELO.POJO
                 }
             }
         }
+        
     }
 }

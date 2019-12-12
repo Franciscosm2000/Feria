@@ -299,7 +299,7 @@ namespace SistemaEmpeños
             else
             {
                 //string FECHA = string.Format( ,"yyyy-MM-dd");
-                MessageBox.Show(dateRango1.Value.Date.ToString());
+               
             }
            // MostrarTabla(dateRango1.Text);
         }
@@ -312,7 +312,7 @@ namespace SistemaEmpeños
                 dateRango2.Value = DateTime.Now.Date;
                 MessageBox.Show("La fecha es menor a la actual");
             }
-            MessageBox.Show(dateRango2.Text);
+           
         }
 
         //Evento para mostrar los datos en el comboBox
@@ -321,6 +321,9 @@ namespace SistemaEmpeños
             cmbEmpleado.ValueMember = "Id_Empleado";
             cmbEmpleado.DisplayMember = "Nombres";
             cmbEmpleado.DataSource = ControlEmpleado.MostrarDatos();
+
+            cmbCliente.DisplayMember = "Cédula";
+            cmbCliente.DataSource = ControladorCliente.MostrarDatos();
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -413,10 +416,35 @@ namespace SistemaEmpeños
 
         private void button4_Click(object sender, EventArgs e)
         {
-            SetTabInactiveEffect(lblPawnsTab, null);
-            SetTabInactiveEffect(lblnewPawnTab, null);
-            SetTabActiveEffect(lblPayTab, null);
-            tabControl.SelectedTab = payTabPage;
+            if (dgvPagos.SelectedRows == null) { }
+            else
+            {
+                SetTabInactiveEffect(lblPawnsTab, null);
+                SetTabInactiveEffect(lblnewPawnTab, null);
+                SetTabActiveEffect(lblPayTab, null);
+                tabControl.SelectedTab = payTabPage;
+
+                txtNombreP.Text = dgvPawns.CurrentRow.Cells[9].Value.ToString();
+                txtDescripP.Text = dgvPawns.CurrentRow.Cells[10].Value.ToString();
+                txtTipoP.Text = dgvPawns.CurrentRow.Cells[11].Value.ToString();
+
+                dgvPagos.DataSource = null;
+                dgvPagos.DataSource = ControlEmpeno.mostrarTablaAmortizacion(cmbFrecuencia.Text, txtMonto.Text);
+
+
+            }
+            
+            
+        }
+
+        private void cmbEmpleado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MostrarTabla(cmbEmpleado.SelectedText);
+        }
+
+        private void cmbCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MostrarTabla(cmbCliente.SelectedText);
         }
     }
 }

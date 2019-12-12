@@ -107,8 +107,6 @@ as
 	select c.Id_Producto from Producto c where c.Nombre = @Nombre and c.Id_Tipo_Producto = @tipo
 go
 
-select e.Id_Empeño from Empeño e where e.Id_Cliente_Vendedor = 9 and e.Id_Empleado = 9 
-
 --Empeno ---------------------
 alter proc sp_add_Empeno
 @idClient int,
@@ -132,20 +130,6 @@ as
 	,'HABILITADO');
 	
 go
-select * FROM Empeño
-SELECT *FROM Producto
-SELECT *FROM Detalle_Empeño
-Select *from Cliente_Vendedor
-select *from Producto
-delete Empeño
-
-exec sp_add_Empeno 0,2,6,200,100,2,'2019-12-11'
-
-----------------------------------------
-select *from Empleado
-
-
-select *from Detalle_Empeño
 
 --------------Fran
 --HACER PROCESO DE TABLA DE AMORTIZACION
@@ -280,8 +264,6 @@ as
 go
 
 
-exec sp_addUsuario'fran','123',0,'dsa'
-
 create proc sp_BuscarUsuario
 @Usuario varchar(50),
 @pass nvarchar(30),
@@ -371,7 +353,10 @@ as
 	de.Fecha_Vencimiento,
 	de.Monto_Empeño,
 	de.Cuota,
-	de.Frecuencia
+	de.Frecuencia,
+	p.Nombre as Producto,
+	p.Descripcion,
+	tp.Tipo
 	from Empeño e
 	inner join Detalle_Empeño de 
 	on e.Id_Empeño = de.Id_Empeño
@@ -379,6 +364,9 @@ as
 	on e.Id_Empleado = em.Id_Empleado
 	inner join Cliente_Vendedor cv
 	on e.Id_Cliente_Vendedor = cv.Id_Cliente_Vendedor
+	inner join Producto p on   p.Id_Producto = de.Id_producto 
+	inner join Tipo_Producto tp on tp.Id_Tipo_Producto = p.Id_Tipo_Producto
+
 	where 
 	e.Id_Empeño like @dato + '%' or
 	e.Fecha like @dato + '%' or
@@ -392,14 +380,9 @@ as
 	cv.Primer_Apellido like @dato + '%' or
 	cv.Segundo_Apellido like @dato + '%'
 
-	----------------------------------------------------------
-select CONCAT(YEAR(GETDATE()),'/',MONTH(GETDATE()),'/',day(GETDATE()))
-
-select GETDATE()
 ----------------------------------------------------------------
-exec sp_BuscarEmpeño 'xavier'
 	-----Tabla amortizacion
-	
+
 create PROCEDURE sp_prestamo 
 @meses INT, @tasa float, @principal money, @email VARCHAR(50)
 as
@@ -449,4 +432,8 @@ as
 
 
 
- backup database PawnSystem to disk = 'C:\Users\FranciscoSM\Desktop\Feria\SQL\PawnSystem.bak'
+
+
+
+
+

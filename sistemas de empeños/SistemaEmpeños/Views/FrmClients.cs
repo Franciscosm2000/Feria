@@ -68,11 +68,11 @@ namespace SistemaEmpeños
             int poc = 0; //
             txtCedula.Enabled = false;
             poc = dgvCliente.CurrentRow.Index; //octenemos la posicion\
-            txtCedula.Text = dgvCliente[2, poc].Value.ToString();
+            txtCedula.Text = dgvCliente[4, poc].Value.ToString();
             txtNombre.Text = dgvCliente[0, poc].Value.ToString();
             txtApellido.Text = dgvCliente[1, poc].Value.ToString();
             txtDireccion.Text = dgvCliente[3, poc].Value.ToString();
-            txtTel.Text = dgvCliente[4, poc].Value.ToString();
+            txtTel.Text = dgvCliente[2, poc].Value.ToString();
             txtCorr.Text = dgvCliente[5, poc].Value.ToString();
         }
         //Actualizar Cliente
