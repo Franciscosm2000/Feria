@@ -649,7 +649,7 @@
             this.dgvPawns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPawns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPawns.EnableHeadersVisualStyles = false;
-            this.dgvPawns.Location = new System.Drawing.Point(25, 199);
+            this.dgvPawns.Location = new System.Drawing.Point(25, 213);
             this.dgvPawns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvPawns.Name = "dgvPawns";
             this.dgvPawns.ReadOnly = true;
