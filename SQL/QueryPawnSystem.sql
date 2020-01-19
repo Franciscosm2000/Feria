@@ -4,6 +4,7 @@ go
 create database PawnSystem
 go
 
+use  PawnSystem
 ---tablas
 
 create table Cliente_Vendedor(
@@ -169,7 +170,7 @@ check(Estado='Disponible' OR Estado='No Disponible');
 
 ALTER TABLE Usuario
 add constraint CK_rol_usuario
-check(usuario='ADMIN' OR usuario='EMPLEADO');
+check(usuario='Administrador' OR usuario='Empleado');
 
 ALTER TABLE Detalle_Empeño
 add constraint CK_Detalle_Empeño

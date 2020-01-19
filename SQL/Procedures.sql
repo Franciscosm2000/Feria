@@ -1,7 +1,7 @@
 use PawnSystem
 go
 
-CREATE PROCEDURE Insertar_Cliente_vendedor
+alter PROCEDURE Insertar_Cliente_vendedor
 @p_nom varchar(50),
 @s_nom varchar(50), 
 @p_apell varchar(50),
@@ -13,10 +13,8 @@ CREATE PROCEDURE Insertar_Cliente_vendedor
 AS
 	INSERT INTO Cliente_Vendedor VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@tel,@correo);
 
-	exec Insertar_Cliente_vendedor 'as','asdf','asdf','asdf','741','sdaf42','74','asdf'
-	SELECT * FROM Cliente_Vendedor;
 
-CREATE PROCEDURE Insertar_Cliente_Comprador
+alter PROCEDURE Insertar_Cliente_Comprador
 @p_nom varchar(50),
 @s_nom varchar(50), 
 @p_apell varchar(50),
@@ -25,9 +23,8 @@ CREATE PROCEDURE Insertar_Cliente_Comprador
 @dir varchar(100)
 AS
 	INSERT INTO Cliente_Comprador VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir);
-	SELECT * FROM Cliente_Comprador;
 
-create procedure insertar_Empleado
+alter procedure insertar_Empleado
 @p_nom varchar(50),
 @s_nom varchar(50), 
 @p_apell varchar(50),
@@ -38,22 +35,18 @@ create procedure insertar_Empleado
 @correo varchar(50)
 AS
 	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,'HABILITADO');
-	SELECT * FROM Empleado;
+	
 
-EXEC insertar_Empleado 's','s','sdf','fdsa','001520','adfas','asdfas','s'
-
-
-create procedure insertar_pago_empeño
+alter procedure insertar_pago_empeño
 @id_empeño integer,
 @fecha date,
 @monto_pagado money,
 @estado varchar(50)
 as
 	insert into Pago_Empeño values(@id_empeño,@fecha,@monto_pagado,@estado);
-	select * from Pago_Empeño;
+	
 
-
-create procedure insertar_producto
+alter procedure insertar_producto
 @id_tipo_producto integer,
 @valor money,
 @descripcion varchar(100),
@@ -61,17 +54,15 @@ create procedure insertar_producto
 @precio_venta money
 as
 	insert into Producto values(@id_tipo_producto,@valor,@descripcion,@nombre,@precio_venta,'HABILITADO');
-	select * from Producto;
-
-create procedure insertar_tipo_producto
+	
+alter procedure insertar_tipo_producto
 @tipo varchar(50),
 @descripcion varchar(100)
 as
 	insert into Tipo_Producto values(@tipo,@descripcion);
-	select * from Tipo_Producto;
-
+	
 	---vta
-create proc sp_Realizar_Venta
+alter proc sp_Realizar_Venta
 @id_ClienteComprador int,
 @id_Producto int,
 @id_Empleado int
@@ -108,7 +99,7 @@ as
 go
 
 --Empeno ---------------------
-alter proc sp_add_Empeno
+create proc sp_add_Empeno
 @idClient int,
 @idEmpleado int,
 @idP int,
@@ -141,28 +132,25 @@ as
 	begin
 	select CONCAT(Primer_Nombre,' ',Segundo_Nombre) as Nombres,
 	CONCAT(Primer_Apellido,' ',Segundo_Apellido) as Apellido,Cédula,
-	Dirrección, Telefono, Correo from Cliente_Vendedor
+	Dirrección, Telefono as [Telèfono], Correo from Cliente_Vendedor
 	end
 	else if @tipo = 'Empleado'
 	begin
 	select Id_Empleado ,CONCAT(Primer_Nombre,'',Segundo_Nombre) as Nombres,
 	Concat(Primer_Apellido,' ',Segundo_Apellido)as Apellidos,Cédula,
-	Dirrección, Telefono, Correo, Estado from Empleado
+	Dirrección, Telefono as [Telèfono], Correo, Estado from Empleado
 	end
 
-	exec sp_mostrarCliente_Empleado 'Cliente'
 	
 --Proceso para buscar un cliente comprador
-create proc sp_buscarClienteComprador
+alter proc sp_buscarClienteComprador
 @Dato varchar(100)
 as
 select 
-c.Primer_Nombre,
-c.Segundo_Nombre,
-c.Primer_Apellido,
-c.Segundo_Apellido,
-c.Cédula ,
-c.Dirrección
+c.Primer_Nombre as [Primer Nombre],
+c.Segundo_Nombre as [Segundo Nombre],
+c.Primer_Apellido as [Primer Apellido],
+c.Segundo_Apellido as [Segundo Apellido]
 from Cliente_Comprador c
 where c.Primer_Nombre like @Dato + '%' or
 	  c.Segundo_Nombre like @Dato + '%' or
@@ -172,9 +160,9 @@ where c.Primer_Nombre like @Dato + '%' or
 ---Mostrar todos los datos cliente comprador
 create proc sp_mostrarTodoClienteComprador
 as
-select Primer_Nombre, Segundo_Nombre,
-Primer_Apellido, Segundo_Apellido,
-Telefono, Correo
+select Primer_Nombre as [Primer Nombre], Segundo_Nombre as [Segundo Nombre],
+Primer_Apellido as [Primer Apellido], Segundo_Apellido as [Segundo Apellido],
+Telefono as [Telèfono] , Correo
  from Cliente_Comprador
 
 
@@ -219,7 +207,6 @@ if @Tipo = 'Empleado'
 		  c.Cédula like @Dato + '%';
 	end
 
-	exec sp_buscarCliente_Empleado 'Empleado','fra'
 
 --proceso para actualizar datos del cliente y del empleado
 CREATE proc Actualizar_Cliente_Empleado
@@ -288,44 +275,41 @@ go
  
 
 ----Cargo
-create proc sp_addCargo
+alter proc sp_addCargo
 @Cargo varchar(50)
 as
 	insert into Cargo values 
 	(@Cargo);
 go
 
-exec sp_addCargo 'Administrador'
  ----Producto
 
- create proc BuscarProducto
+alter proc BuscarProducto
  @Dato varchar(50)
  as
- select p.Nombre, tp.Tipo,p.Descripcion,p.Estado from Producto p 
+ select p.Nombre, tp.Tipo,p.Descripcion as [Descripciòn],p.Estado from Producto p 
  inner join Tipo_Producto tp on p.Id_Tipo_Producto = tp.Id_Tipo_Producto
  where
  p.Nombre like @Dato +'%' or
  tp.Tipo like @Dato + '%'
 
- create proc MostrarProducto
+ alter proc MostrarProducto
  as
- select p.Nombre,p.Descripcion,tp.Tipo,p.Valor 
- , p.Precio_Venta, p.Estado
+ select p.Nombre,p.Descripcion as [Descripciòn],tp.Tipo,p.Valor 
+ , p.Precio_Venta as [Precio de Venta], p.Estado
  from Producto p
 inner join Tipo_Producto  tp
  on p.Id_Tipo_Producto = tp.Id_Tipo_Producto 
 
- SELECT *FROM EMPLEADO
 
  --Mostrar Tipo Producto
- create proc MostrarTipoProducto
+ alter proc MostrarTipoProducto
  as
  select tp.Id_Tipo_Producto, tp.Tipo from 
   Tipo_Producto tp 
 
 
-  exec MostrarTipoProducto
-
+  
  create proc sp_Cambiar_EstadoEmpleado
  @Cedula nvarchar(16)
  as
@@ -345,13 +329,15 @@ alter proc sp_BuscarEmpeño
 @dato varchar(50)
 as
 	select 
-	e.Id_Empeño as [Contrato], e.Fecha,de.Estado,
+	e.Id_Empeño as [Contrato],
+	e.Fecha
+	,de.Estado,
 	Concat(em.Primer_Nombre,' ',em.Primer_Apellido)
 	as [Nombre Empleado],
 	CONCAT (cv.Primer_Nombre,' ', cv.Primer_Apellido) 
 	as [Nombre Cliente],
-	de.Fecha_Vencimiento,
-	de.Monto_Empeño,
+	de.Fecha_Vencimiento as [Fecha de vencimiento],
+	de.Monto_Empeño as [Monto],
 	de.Cuota,
 	de.Frecuencia,
 	p.Nombre as Producto,
@@ -383,7 +369,7 @@ as
 ----------------------------------------------------------------
 	-----Tabla amortizacion
 
-create PROCEDURE sp_prestamo 
+alter PROCEDURE sp_prestamo 
 @meses INT, @tasa float, @principal money, @email VARCHAR(50)
 as
 
