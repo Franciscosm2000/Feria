@@ -178,12 +178,20 @@ namespace SistemaEmpeños
                 }
                 else
                 {
+
+                    FrmAccount f = new FrmAccount(txtCorreo.Text);
+                    f.Show();
+
                     ControlEmpleado con = new ControlEmpleado();
 
                     string[] nombre = (txtNombre.Text).Split(' ');
                     string[] apellido = (txtApellido.Text).Split(' ');
 
-                    con.AddEmpleado(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+                    if (apellido.Length == 1) 
+                        con.AddEmpleado(nombre[0], nombre[1], apellido[0], " ", txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+                    else
+                        con.AddEmpleado(nombre[0], nombre[1], apellido[0], apellido[1], txtTel.Text, txtCorreo.Text, txtCedula.Text, txtDireccion.Text);
+
                 }
             }
 
@@ -237,6 +245,7 @@ namespace SistemaEmpeños
             dgvEmpleados.DataSource = null;
             dgvEmpleados.DataSource = c.buscarDatos(txtFilter.Text);
         }
+
 
 
 

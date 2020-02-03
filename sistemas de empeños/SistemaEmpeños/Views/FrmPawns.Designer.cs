@@ -1396,7 +1396,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValor.Location = new System.Drawing.Point(104, 168);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(159, 21);
+            this.txtValor.Size = new System.Drawing.Size(155, 21);
             this.txtValor.TabIndex = 14;
             // 
             // txtDescripcion
@@ -1406,7 +1406,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(104, 93);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(159, 69);
+            this.txtDescripcion.Size = new System.Drawing.Size(155, 69);
             this.txtDescripcion.TabIndex = 13;
             // 
             // idTipo
@@ -1416,7 +1416,7 @@
             this.idTipo.FormattingEnabled = true;
             this.idTipo.Location = new System.Drawing.Point(104, 63);
             this.idTipo.Name = "idTipo";
-            this.idTipo.Size = new System.Drawing.Size(159, 24);
+            this.idTipo.Size = new System.Drawing.Size(155, 24);
             this.idTipo.TabIndex = 12;
             // 
             // txtNombreProducto
@@ -1425,7 +1425,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombreProducto.Location = new System.Drawing.Point(104, 36);
             this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(159, 21);
+            this.txtNombreProducto.Size = new System.Drawing.Size(155, 21);
             this.txtNombreProducto.TabIndex = 11;
             // 
             // label14
@@ -1605,7 +1605,7 @@
             this.txtDescripP.Location = new System.Drawing.Point(113, 96);
             this.txtDescripP.Multiline = true;
             this.txtDescripP.Name = "txtDescripP";
-            this.txtDescripP.Size = new System.Drawing.Size(142, 69);
+            this.txtDescripP.Size = new System.Drawing.Size(138, 69);
             this.txtDescripP.TabIndex = 31;
             // 
             // txtTipoP
@@ -1615,7 +1615,7 @@
             this.txtTipoP.FormattingEnabled = true;
             this.txtTipoP.Location = new System.Drawing.Point(113, 66);
             this.txtTipoP.Name = "txtTipoP";
-            this.txtTipoP.Size = new System.Drawing.Size(142, 24);
+            this.txtTipoP.Size = new System.Drawing.Size(138, 24);
             this.txtTipoP.TabIndex = 30;
             // 
             // txtNombreP
@@ -1624,7 +1624,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombreP.Location = new System.Drawing.Point(113, 39);
             this.txtNombreP.Name = "txtNombreP";
-            this.txtNombreP.Size = new System.Drawing.Size(142, 21);
+            this.txtNombreP.Size = new System.Drawing.Size(138, 21);
             this.txtNombreP.TabIndex = 29;
             // 
             // label36
@@ -1669,7 +1669,7 @@
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.Location = new System.Drawing.Point(20, 260);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(235, 40);
+            this.button3.Size = new System.Drawing.Size(231, 40);
             this.button3.TabIndex = 24;
             this.button3.Text = "LIMPIAR";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1701,7 +1701,7 @@
             this.btnSave.Image = global::SistemaEmpeños.Properties.Resources.icon_invoice;
             this.btnSave.Location = new System.Drawing.Point(20, 214);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(235, 40);
+            this.btnSave.Size = new System.Drawing.Size(231, 40);
             this.btnSave.TabIndex = 18;
             this.btnSave.Text = "PAGAR";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

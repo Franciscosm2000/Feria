@@ -25,7 +25,7 @@ namespace SistemaEmpeños.MODELO.Clases
 
         //Metodos
        
-        public DataTable BuscarDatos(string datos)
+        public DataTable BuscarDatos(string datos) 
         {
             DataTable res = new DataTable();
             try

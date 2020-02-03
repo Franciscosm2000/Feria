@@ -22,6 +22,12 @@ namespace SistemaEmpeños
             InitializeComponent();
         }
 
+        public FrmAccount(string correo)
+        {
+            InitializeComponent();
+            txtEmail.Text = correo;
+        }
+
         // Start TitleBar Handlers
         private void TitleBar_MouseDown(object sender, MouseEventArgs e)
         {
