@@ -174,8 +174,3 @@ check(usuario='ADMIN' OR usuario='EMPLEADO');
 ALTER TABLE Detalle_Empeño
 add constraint CK_Detalle_Empeño
 check(Estado='' OR Estado='');
-
-
-
-
-

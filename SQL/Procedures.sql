@@ -108,7 +108,7 @@ as
 go
 
 --Empeno ---------------------
-alter proc sp_add_Empeno
+create proc sp_add_Empeno
 @idClient int,
 @idEmpleado int,
 @idP int,
@@ -134,7 +134,7 @@ go
 --------------Fran
 --HACER PROCESO DE TABLA DE AMORTIZACION
 ---Mostrar todo
-alter proc sp_mostrarCliente_Empleado
+create proc sp_mostrarCliente_Empleado
 @tipo varchar(20)
 as
 	if @tipo = 'Cliente'
@@ -160,9 +160,7 @@ select
 c.Primer_Nombre,
 c.Segundo_Nombre,
 c.Primer_Apellido,
-c.Segundo_Apellido,
-c.Cédula ,
-c.Dirrección
+c.Segundo_Apellido
 from Cliente_Comprador c
 where c.Primer_Nombre like @Dato + '%' or
 	  c.Segundo_Nombre like @Dato + '%' or
@@ -179,7 +177,7 @@ Telefono, Correo
 
 
 --Proceso para buscar un cliente o un empleado
-alter proc sp_buscarCliente_Empleado
+create proc sp_buscarCliente_Empleado
 @Tipo varchar(20),
 @Dato varchar(100)
 as
@@ -341,7 +339,7 @@ inner join Tipo_Producto  tp
 
 	---Empeño
 
-alter proc sp_BuscarEmpeño
+create proc sp_BuscarEmpeño
 @dato varchar(50)
 as
 	select 
