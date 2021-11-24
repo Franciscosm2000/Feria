@@ -13,7 +13,7 @@ CREATE PROCEDURE Insertar_Cliente_vendedor
 AS
 	INSERT INTO Cliente_Vendedor VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@tel,@correo);
 
-	exec Insertar_Cliente_vendedor 'as','asdf','asdf','asdf','741','sdaf42','74','asdf'
+	exec Insertar_Cliente_vendedor 'Saul','Antonio','Miranda','Lopez','001-220300-1030E','villa reconciliacion','75272268','saulantonio0317@gmail.com'
 	SELECT * FROM Cliente_Vendedor;
 
 CREATE PROCEDURE Insertar_Cliente_Comprador
@@ -40,7 +40,7 @@ AS
 	INSERT INTO Empleado VALUES(@p_nom,@s_nom,@p_apell,@s_apell,@cedula,@dir,@telefono,@correo,'HABILITADO');
 	SELECT * FROM Empleado;
 
-EXEC insertar_Empleado 's','s','sdf','fdsa','001520','adfas','asdfas','s'
+exec insertar_Empleado'Jhonny','Antonio','Miranda','Flores','001-220300-1030E','villa reconciliacion','75272268','jhonnymirandaflores@gmail.com'
 
 
 create procedure insertar_pago_empeño
